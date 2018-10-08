@@ -26,14 +26,21 @@ def anagram_searcher(str_word_input, list_dictionary):
     return anagram_list
 
 
+def char_generator(str_word_input):
+    word_list = str_word_input.split()
+    char_seq = []
+    for word in word_list:
+        for letter in word:
+                if word.count(letter) != char_seq.count(letter):
+                    char_seq.append(letter)
+    char_seq = ''.join(sorted(char_seq))
+    return char_seq
+
+
 filename = str(input())
 dictionary = load_dictionary(filename)
 test_cases = int(input())
 
 for i in range(test_cases):
     word_input = str(input())
-    matching_words = anagram_searcher(word_input, dictionary)
-
-    for item in matching_words:
-        print(item, end=' ')
-    print()
+    print(char_generator(word_input))
