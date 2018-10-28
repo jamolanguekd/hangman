@@ -3,7 +3,7 @@ import engine
 import random
 
 
-dictionary = engine.load_dictionary("dictionary.txt")
+dictionary = engine.load_dictionary("dictionary_sample.txt")
 menu = interface.main_menu()
 mode = ""
 difficulty =""
@@ -77,10 +77,10 @@ while menu != "QUIT":
                 word_total = 2
             elif difficulty == "NORMAL":
                 lives = 3
-                word_total = 5
+                word_total = 3
             elif difficulty == "DIFFICULT":
                 lives = 5
-                word_total = 10
+                word_total = 5
 
             search_list = []
             while len(search_list) < word_total:
@@ -90,16 +90,34 @@ while menu != "QUIT":
 
             given = engine.char_generator(search_list)
 
+            # WORDS TO FIND WITH BLANKS
+            found_list = []
+            for word in search_list:
+                x = list(word)
+                for i in range(len(x)):
+                    x[i] = "_"
+                for i in range(random.randint(5, 8)):
+                    pos = 0
+                    while x[pos] != "_":
+                        pos = random.randint(0, len(x)-1)
+                    x[pos] = word[pos]
+                found_list.append("".join(x))
+
             interface.print_word_finder()
 
             while lives > 0 and len(search_list) > 0:
                 interface.print_game_status_wordfinder(lives, words_found, len(search_list), score, given)
+                for item in found_list:
+                    print(item)
                 word = str(input()).lower()
                 if engine.word_checker(given, word, dictionary):
                     score += engine.compute_score(word)
                     words_found += 1
                     if word in search_list:
                         search_list.remove(word)
+
+                        for ch in word:
+                            given = given.replace(ch, "", 1)
                     interface.print_game_status_wordfinder(lives, words_found, len(search_list), score, given)
                 else:
                     lives -= 1
