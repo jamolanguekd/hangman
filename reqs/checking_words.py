@@ -37,9 +37,9 @@ def char_generator(str_word_input):
     return char_seq
 
 
-def word_checker(str_char_seq, str_word, dictionary):
+def word_checker(str_char_seq, str_word, list_dictionary):
     char_seq_list = list(str_char_seq)
-    if str_word not in dictionary:
+    if str_word not in list_dictionary:
         return False
     else:
         for letter in str_word:
