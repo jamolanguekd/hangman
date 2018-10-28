@@ -18,10 +18,9 @@ def anagram_searcher(str_word_input, list_dictionary):
     sorted_word = ''.join(sorted(str_word_input))
     anagram_list = []
     for word in list_dictionary:
-        if ''.join(sorted(word)) == sorted_word:
-            anagram_list.append(word)
-    if str_word_input not in anagram_list:
-        anagram_list.append(str_word_input)
+        if word != str_word_input:
+            if ''.join(sorted(word)) == sorted_word:
+                anagram_list.append(word)
     anagram_list.sort()
     return anagram_list
 

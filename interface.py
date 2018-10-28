@@ -1,5 +1,5 @@
 import os
-
+import engine
 
 def clear_screen():
     os.system('cls' if os.name == 'nt' else 'clear')
@@ -44,12 +44,41 @@ def print_difficulty():
 
 
 def print_anagram_searcher():
+    clear_screen()
     print("-------------------- A N A G R A M   S E A R C H E R --------------------")
     print()
     print(" In this game mode, you have to find all the anagrams of the given word. ")
     print()
     print("-------------------------------------------------------------------------")
     print()
+
+
+def print_game_status(int_lives, int_words_found, int_score, str_given):
+    clear_screen()
+    print("-------------------- A N A G R A M   S E A R C H E R --------------------")
+    print()
+    print("  LIVES :"+str(int_lives)+"               WORDS FOUND: "+str(int_words_found)+"                   SCORE: "+str(int_score))
+    print()
+    print("-------------------------------------------------------------------------")
+    print(" GIVEN WORD: "+str(str_given))
+    print("-------------------------------------------------------------------------")
+
+
+def main_menu():
+    while True:
+        clear_screen()
+        print_title()
+        print_menu()
+        menu = input()
+        if menu == "1":
+            menu = "START"
+            return menu
+        elif menu == "2":
+            menu = "HELP"
+            return menu
+        elif menu == "3":
+            menu = "QUIT"
+            return menu
 
 
 def choose_mode():
@@ -65,20 +94,19 @@ def choose_mode():
             mode = "WORD FINDER"
             return mode
 
-def anagram_searcher():
-
 
 def choose_difficulty():
-    clear_screen()
-    print_title()
-    print_difficulty()
-    difficulty = input()
-    if difficulty == "1":
-        difficulty = "EASY"
-        return difficulty
-    if difficulty == "1":
-        difficulty = "NORMAL"
-        return difficulty
-
-
-choose_mode()
+    while True:
+        clear_screen()
+        print_title()
+        print_difficulty()
+        difficulty = input()
+        if difficulty == "1":
+            difficulty = "EASY"
+            return difficulty
+        elif difficulty == "2":
+            difficulty = "NORMAL"
+            return difficulty
+        elif difficulty == "3":
+            difficulty = "DIFFICULT"
+            return difficulty
