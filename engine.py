@@ -6,8 +6,8 @@ def load_dictionary(filename):
     return dictionary_list
 
 
-def pick_words(list_dictionary, str_position):
-    position_list = str_position.split()
+def pick_words(list_dictionary, list_position):
+    position_list = list_position
     word_list = []
     for position in position_list:
         word_list.append(list_dictionary[int(position)])
