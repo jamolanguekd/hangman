@@ -84,7 +84,7 @@ while menu != "QUIT":
             search_list = []
             while len(search_list) < word_total:
                 x = random.choice(dictionary)
-                if x not in dictionary:
+                if x not in search_list:
                     search_list.append(x)
 
             given = engine.char_generator(search_list)
