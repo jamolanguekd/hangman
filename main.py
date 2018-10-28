@@ -47,7 +47,8 @@ while menu != "QUIT":
                 if engine.word_checker(given, word, anagram_list):
                     score += engine.compute_score(word)
                     words_found +=1
-                    anagram_list.remove(word)
+                    if word in anagram_list:
+                        anagram_list.remove(word)
                     interface.print_game_status_anagram(lives, words_found, score, given)
                 else:
                     lives -= 1
@@ -97,7 +98,8 @@ while menu != "QUIT":
                 if engine.word_checker(given, word, dictionary):
                     score += engine.compute_score(word)
                     words_found +=1
-                    search_list.remove(word)
+                    if word in search_list:
+                        search_list.remove(word)
                     interface.print_game_status_wordfinder(lives, words_found, score, given)
                 else:
                     lives -= 1
