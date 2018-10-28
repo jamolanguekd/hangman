@@ -25,8 +25,8 @@ def anagram_searcher(str_word_input, list_dictionary):
     return anagram_list
 
 
-def char_generator(str_word_input):
-    word_list = str_word_input.split()
+def char_generator(list_words):
+    word_list = list_words
     char_seq = []
     for word in word_list:
         for letter in word:
@@ -61,18 +61,26 @@ def compute_score(str_word):
     count = 0
     for letter in str_word:
         if letter in one:
-            count += 1
+            count += 100
         elif letter in two:
-            count += 2
+            count += 200
         elif letter in three:
-            count += 3
+            count += 300
         elif letter in four:
-            count += 4
+            count += 400
         elif letter in five:
-            count += 5
+            count += 500
         elif letter in eight:
-            count += 8
+            count += 800
         elif letter in ten:
-            count += 10
+            count += 1000
 
     return count
+
+import interface
+
+dictionary = load_dictionary("dictionary.txt")
+new_file = open("anagram_count.txt", 'w')
+for word in dictionary:
+    new_file.write(str(len(anagram_searcher(word, dictionary))))
+    interface.progress(dictionary.index(word)+1, len(dictionary), str(dictionary.index(word)+1)+"/"+str(len(dictionary)))
