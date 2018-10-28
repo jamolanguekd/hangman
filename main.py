@@ -1,10 +1,6 @@
 import interface
 import engine
 import random
-import sys
-
-
-
 
 
 dictionary = engine.load_dictionary("dictionary.txt")
