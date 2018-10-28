@@ -1,5 +1,17 @@
 import os
-import engine
+import sys
+
+
+def progress(count, total, suffix):
+    bar_len = 60
+    filled_len = int(round(bar_len * count / float(total)))
+
+    percents = round(100.0 * count / float(total), 1)
+    bar = '=' * filled_len + '-' * (bar_len - filled_len)
+
+    sys.stdout.write('[%s] %s%s ...%s\r' % (bar, percents, '%', suffix))
+    sys.stdout.flush()  # As suggested by Rom Ruben
+
 
 def clear_screen():
     os.system('cls' if os.name == 'nt' else 'clear')
@@ -53,7 +65,17 @@ def print_anagram_searcher():
     print()
 
 
-def print_game_status(int_lives, int_words_found, int_score, str_given):
+def print_word_finder():
+    clear_screen()
+    print("------------------------- W O R D   F I N D E R -------------------------")
+    print()
+    print("      In this game mode, find all possible words from the sequence.      ")
+    print()
+    print("-------------------------------------------------------------------------")
+    print()
+
+
+def print_game_status_anagram(int_lives, int_words_found, int_score, str_given):
     clear_screen()
     print("-------------------- A N A G R A M   S E A R C H E R --------------------")
     print()
@@ -63,6 +85,16 @@ def print_game_status(int_lives, int_words_found, int_score, str_given):
     print(" GIVEN WORD: "+str(str_given))
     print("-------------------------------------------------------------------------")
 
+
+def print_game_status_wordfinder(int_lives, int_words_found, int_score, str_given):
+    clear_screen()
+    print("------------------------- W O R D   F I N D E R -------------------------")
+    print()
+    print("  LIVES :"+str(int_lives)+"               WORDS FOUND: "+str(int_words_found)+"                   SCORE: "+str(int_score))
+    print()
+    print("-------------------------------------------------------------------------")
+    print(" GIVEN WORD: "+str(str_given))
+    print("-------------------------------------------------------------------------")
 
 def main_menu():
     while True:
