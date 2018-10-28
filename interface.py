@@ -75,22 +75,22 @@ def print_word_finder():
     print()
 
 
-def print_game_status_anagram(int_lives, int_words_found, int_score, str_given):
+def print_game_status_anagram(int_lives, int_words_found, int_words_left, int_score, str_given):
     clear_screen()
     print("-------------------- A N A G R A M   S E A R C H E R --------------------")
     print()
-    print("  LIVES :"+str(int_lives)+"               WORDS FOUND: "+str(int_words_found)+"                   SCORE: "+str(int_score))
+    print("  LIVES :"+str(int_lives)+"        WORDS FOUND: "+str(int_words_found)+"    WORDS LEFT: "+str(int_words_left)+"            SCORE: "+str(int_score))
     print()
     print("-------------------------------------------------------------------------")
     print(" GIVEN WORD: "+str(str_given))
     print("-------------------------------------------------------------------------")
 
 
-def print_game_status_wordfinder(int_lives, int_words_found, int_score, str_given):
+def print_game_status_wordfinder(int_lives, int_words_found, int_words_left, int_score, str_given):
     clear_screen()
     print("------------------------- W O R D   F I N D E R -------------------------")
     print()
-    print("  LIVES :"+str(int_lives)+"               WORDS FOUND: "+str(int_words_found)+"                   SCORE: "+str(int_score))
+    print("  LIVES :"+str(int_lives)+"        WORDS FOUND: "+str(int_words_found)+"    WORDS LEFT: "+str(int_words_left)+"            SCORE: "+str(int_score))
     print()
     print("-------------------------------------------------------------------------")
     print(" GIVEN WORD: "+str(str_given))

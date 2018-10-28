@@ -42,17 +42,17 @@ while menu != "QUIT":
             interface.print_anagram_searcher()
 
             while lives > 0 and len(anagram_list) > 0:
-                interface.print_game_status_anagram(lives, words_found, score, given)
+                interface.print_game_status_anagram(lives, words_found, len(anagram_list), score, given)
                 word = str(input()).lower()
                 if engine.word_checker(given, word, anagram_list):
                     score += engine.compute_score(word)
-                    words_found +=1
+                    words_found += 1
                     if word in anagram_list:
                         anagram_list.remove(word)
-                    interface.print_game_status_anagram(lives, words_found, score, given)
+                    interface.print_game_status_anagram(lives, words_found, len(anagram_list), score, given)
                 else:
                     lives -= 1
-                    interface.print_game_status_anagram(lives, words_found, score, given)
+                    interface.print_game_status_anagram(lives, words_found, len(anagram_list), score, given)
 
             if lives == 0:
                 interface.clear_screen()
@@ -73,7 +73,7 @@ while menu != "QUIT":
             words_found = 0
 
             if difficulty == "EASY":
-                lives = 5
+                lives = 10
                 word_total = 2
             elif difficulty == "NORMAL":
                 lives = 3
@@ -93,17 +93,17 @@ while menu != "QUIT":
             interface.print_word_finder()
 
             while lives > 0 and len(search_list) > 0:
-                interface.print_game_status_wordfinder(lives, words_found, score, given)
+                interface.print_game_status_wordfinder(lives, words_found, len(search_list), score, given)
                 word = str(input()).lower()
                 if engine.word_checker(given, word, dictionary):
                     score += engine.compute_score(word)
-                    words_found +=1
+                    words_found += 1
                     if word in search_list:
                         search_list.remove(word)
-                    interface.print_game_status_wordfinder(lives, words_found, score, given)
+                    interface.print_game_status_wordfinder(lives, words_found, len(search_list), score, given)
                 else:
                     lives -= 1
-                    interface.print_game_status_wordfinder(lives, words_found, score, given)
+                    interface.print_game_status_wordfinder(lives, words_found, len(search_list), score, given)
 
             if lives == 0:
                 interface.clear_screen()
