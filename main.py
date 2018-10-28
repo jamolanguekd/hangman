@@ -91,7 +91,7 @@ while menu != "QUIT":
 
             interface.print_word_finder()
 
-            while lives > 0 and len(anagram_list) > 0:
+            while lives > 0 and len(search_list) > 0:
                 interface.print_game_status_wordfinder(lives, words_found, score, given)
                 word = str(input()).lower()
                 if engine.word_checker(given, word, dictionary):
