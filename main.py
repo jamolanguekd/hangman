@@ -1,9 +1,9 @@
 import interface
 import engine
 import random
+import itertools
 
-
-dictionary = engine.load_dictionary("dictionary_sample.txt")
+dictionary = engine.load_dictionary("dictionary.txt")
 menu = interface.main_menu()
 mode = ""
 difficulty =""
@@ -71,7 +71,7 @@ while menu != "QUIT":
             lives = 0
             score = 0
             words_found = 0
-
+            word_total = 0
             if difficulty == "EASY":
                 lives = 10
                 word_total = 2
@@ -82,11 +82,8 @@ while menu != "QUIT":
                 lives = 5
                 word_total = 5
 
-            search_list = []
-            while len(search_list) < word_total:
-                x = random.choice(dictionary)
-                if x not in search_list:
-                    search_list.append(x)
+            search_list = engine.pick_words(dictionary, random.sample(range(0, len(dictionary)-1), word_total))
+            search_list_copy = search_list.copy()
 
             given = engine.char_generator(search_list)
 
@@ -96,10 +93,18 @@ while menu != "QUIT":
                 x = list(word)
                 for i in range(len(x)):
                     x[i] = "_"
-                for i in range(random.randint(5, 8)):
+
+                revealed_count = 0
+                if len(x) <= 4:
+                    revealed_count = 2
+
+                elif 4 < len(x) <= 8:
+                    revealed_count = 4
+
+                while x.count("_") != len(x) - revealed_count:
                     pos = 0
                     while x[pos] != "_":
-                        pos = random.randint(0, len(x)-1)
+                        pos = random.randint(0, len(x)- 1)
                     x[pos] = word[pos]
                 found_list.append("".join(x))
 
@@ -114,10 +119,10 @@ while menu != "QUIT":
                     score += engine.compute_score(word)
                     words_found += 1
                     if word in search_list:
+                        found_list[search_list_copy.index(word)] = word
                         search_list.remove(word)
+                        given = engine.char_generator(search_list)
 
-                        for ch in word:
-                            given = given.replace(ch, "", 1)
                     interface.print_game_status_wordfinder(lives, words_found, len(search_list), score, given)
                 else:
                     lives -= 1
