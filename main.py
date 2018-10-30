@@ -145,7 +145,7 @@ while menu != "QUIT":
                 input()
             menu = interface.main_menu()
 
-            # END new anagram mode code
+            # END new anagram mode code hehe
 
         elif mode == "WORD FINDER":
 
