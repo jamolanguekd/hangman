@@ -222,6 +222,7 @@ while menu != "QUIT":
 
             interface.print_word_finder()
 
+            """Old word finder (i just added which words na nahanap na)
             while lives > 0 and len(search_list) > 0:
                 interface.print_game_status_wordfinder(lives, words_found, len(search_list), score, given)
                 for item in found_list:
@@ -239,6 +240,30 @@ while menu != "QUIT":
                 else:
                     lives -= 1
                     interface.print_game_status_wordfinder(lives, words_found, len(search_list), score, given)
+            """
+
+            right_words_inputted = []
+            wrong_words_inputted = []
+            while lives > 0 and len(search_list) > 0:
+                interface.print_game_status_wordfinder(lives, words_found, len(search_list), score, given,right_words_inputted,wrong_words_inputted)
+                for item in found_list:
+                    print(item)
+                word = str(input()).lower()
+                if engine.word_checker(given, word, dictionary):
+                    right_words_inputted.append(word)
+                    score += engine.compute_score(word)
+                    words_found += 1
+                    if word in search_list:
+                        found_list[search_list_copy.index(word)] = word
+                        search_list.remove(word)
+                        given = engine.char_generator(search_list)
+
+                else:
+                    wrong_words_inputted.append(word)
+                    lives -= 1
+
+                interface.print_game_status_wordfinder(lives, words_found, len(search_list), score, given,
+                                                           right_words_inputted, wrong_words_inputted)
 
             if lives == 0:
                 interface.clear_screen()

@@ -75,7 +75,7 @@ def print_word_finder():
     print()
 
 
-def print_game_status_anagram(int_lives, int_words_found, int_words_left, int_score, str_given):
+def print_game_status_anagram(int_lives, int_words_found, int_words_left, int_score, str_given,):
     clear_screen()
     print("-------------------- A N A G R A M   S E A R C H E R --------------------")
     print()
@@ -86,7 +86,7 @@ def print_game_status_anagram(int_lives, int_words_found, int_words_left, int_sc
     print("-------------------------------------------------------------------------")
 
 
-def print_game_status_wordfinder(int_lives, int_words_found, int_words_left, int_score, str_given):
+def print_game_status_wordfinder(int_lives, int_words_found, int_words_left, int_score, str_given, right_words, wrong_words):
     clear_screen()
     print("------------------------- W O R D   F I N D E R -------------------------")
     print()
@@ -94,6 +94,11 @@ def print_game_status_wordfinder(int_lives, int_words_found, int_words_left, int
     print()
     print("-------------------------------------------------------------------------")
     print(" GIVEN WORD: "+str(str_given))
+    print("-------------------------------------------------------------------------")
+    #coleen's changes
+    print("CORRECT GUESSES: " + " ".join(right_words))
+    print("-------------------------------------------------------------------------")
+    print("INCORRECT GUESSES: " + " ".join(wrong_words))
     print("-------------------------------------------------------------------------")
 
 def main_menu():
