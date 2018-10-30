@@ -43,6 +43,7 @@ while menu != "QUIT":
             '''
 
             #new anagram mode code
+            anagram_dictionary = []
 
             if difficulty == "EASY":  # for easy difficulty, only words with 4 letters or fewer will be used
 
@@ -145,7 +146,7 @@ while menu != "QUIT":
                 input()
             menu = interface.main_menu()
 
-            # END new anagram mode code hehe
+            # END new anagram mode code
 
         elif mode == "WORD FINDER":
 
@@ -155,6 +156,10 @@ while menu != "QUIT":
             score = 0
             words_found = 0
             word_total = 0
+            scramble_dictionary = []
+
+            #old word finder code
+            '''
             if difficulty == "EASY":
                 lives = 10
                 word_total = 2
@@ -164,8 +169,33 @@ while menu != "QUIT":
             elif difficulty == "DIFFICULT":
                 lives = 5
                 word_total = 5
+            '''
 
-            search_list = engine.pick_words(dictionary, random.sample(range(0, len(dictionary)-1), word_total))
+            #START new word finder code
+            if difficulty == "EASY":  # easy mode includes only words with 4 letters and fewer
+                lives = 10
+                word_total = 5
+                easy_dictionary = []
+                for word in dictionary:
+                    if len(word) <= 4:
+                        easy_dictionary.append(word)
+                scramble_dictionary = [n for n in easy_dictionary]
+            elif difficulty == "NORMAL":  # normal mode includes words with 6 letters and fewer
+                lives = 5
+                word_total = 5
+                normal_dictionary = []
+                for word in dictionary:
+                    if len(word) <= 6:
+                        normal_dictionary.append(word)
+                scramble_dictionary = [n for n in normal_dictionary]
+            elif difficulty == "DIFFICULT":  # difficult mode includes all words
+                lives = 3
+                word_total = 5
+                scramble_dictionary = [n for n in dictionary]
+            #END new word finder code
+
+            #changed 'dictionary' to 'scramble_dictionary'
+            search_list = engine.pick_words(scramble_dictionary, random.sample(range(0, len(scramble_dictionary)-1), word_total))
             search_list_copy = search_list.copy()
 
             given = engine.char_generator(search_list)
@@ -213,11 +243,19 @@ while menu != "QUIT":
 
             if lives == 0:
                 interface.clear_screen()
-                print("YOU LOSE")
+                interface.print_you_lose()
+                print("-------------------------------------------------------------------")
+                print()
+                print("The words you missed were: " + ", ".join(search_list))
+                print()
+                print("Score: " + str(score))
                 input()
             else:
                 interface.clear_screen()
-                print("YOU WIN")
+                interface.print_you_win()
+                print("-------------------------------------------------------------------")
+                print()
+                print("Score: " + str(score))
                 input()
             menu = interface.main_menu()
 
