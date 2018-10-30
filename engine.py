@@ -31,6 +31,7 @@ def anagram_searcher(str_word_input, list_dictionary):
 
 
 #new anagram searcher function
+
 def searching_for_anagrams(list_of_words):
     word = random.choice(list_of_words)
     anagram_list = []
