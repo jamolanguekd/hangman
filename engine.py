@@ -1,3 +1,5 @@
+import random
+
 def load_dictionary(filename):
     dictionary_file = open(filename)
     dictionary_list = []
@@ -29,7 +31,8 @@ def anagram_searcher(str_word_input, list_dictionary):
 
 
 #new anagram searcher function
-def searching_for_anagrams(word, list_of_words):
+def searching_for_anagrams(list_of_words):
+    word = random.choice(list_of_words)
     anagram_list = []
     word_letters = sorted([n for n in word])
     for i in list_of_words:
