@@ -40,7 +40,7 @@ def searching_for_anagrams(list_of_words):
         i_letters = sorted([n for n in i])
         if i_letters == word_letters and i != word:
             anagram_list.append(i)
-    return anagram_list
+    return word, anagram_list
 
 
 def char_generator(list_words):

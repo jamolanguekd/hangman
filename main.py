@@ -73,7 +73,7 @@ while menu != "QUIT":
                 anagram_dictionary = [n for n in difficult_dictionary]
 
             while True:
-                list_of_anagrams = engine.searching_for_anagrams(anagram_dictionary)
+                word_whose_anagrams_to_find, list_of_anagrams = engine.searching_for_anagrams(anagram_dictionary)
                 if len(list_of_anagrams) > 0:
                     break
 
