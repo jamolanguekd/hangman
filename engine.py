@@ -78,12 +78,3 @@ def compute_score(str_word):
     return count
 
 
-if __name__ == '__main__':
-
-    import interface
-
-    dictionary = load_dictionary("dictionary.txt")
-    new_file = open("anagram_count.txt", 'w')
-    for word in dictionary:
-        new_file.write(str(len(anagram_searcher(word, dictionary))))
-        interface.progress(dictionary.index(word)+1, len(dictionary), str(dictionary.index(word)+1)+"/"+str(len(dictionary)))
