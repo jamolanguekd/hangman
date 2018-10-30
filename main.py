@@ -18,6 +18,8 @@ while menu != "QUIT":
 
             difficulty = interface.choose_difficulty()
 
+            #original anagram mode code
+            '''
             anagram_list = []
             invalid_list = []
             while len(anagram_list) <= 10:
@@ -38,6 +40,7 @@ while menu != "QUIT":
                 lives = 3
             elif difficulty == "DIFFICULT":
                 lives = 5
+            '''
 
             interface.print_anagram_searcher()
 

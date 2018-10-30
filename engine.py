@@ -14,6 +14,8 @@ def pick_words(list_dictionary, list_position):
     return word_list
 
 
+#original anagram searcher function
+'''
 def anagram_searcher(str_word_input, list_dictionary):
     sorted_word = ''.join(sorted(str_word_input))
     anagram_list = []
@@ -22,6 +24,18 @@ def anagram_searcher(str_word_input, list_dictionary):
             if ''.join(sorted(word)) == sorted_word:
                 anagram_list.append(word)
     anagram_list.sort()
+    return anagram_list
+'''
+
+
+#new anagram searcher function
+def searching_for_anagrams(word, list_of_words):
+    anagram_list = []
+    word_letters = sorted([n for n in word])
+    for i in list_of_words:
+        i_letters = sorted([n for n in i])
+        if i_letters == word_letters and i != word:
+            anagram_list.append(i)
     return anagram_list
 
 
@@ -77,4 +91,15 @@ def compute_score(str_word):
 
     return count
 
+#commented out the function that writes a file
+'''
+if __name__ == '__main__':
 
+    import interface
+
+    dictionary = load_dictionary("dictionary.txt")
+    new_file = open("anagram_count.txt", 'w')
+    for word in dictionary:
+        new_file.write(str(len(anagram_searcher(word, dictionary))))
+        interface.progress(dictionary.index(word)+1, len(dictionary), str(dictionary.index(word)+1)+"/"+str(len(dictionary)))
+'''
