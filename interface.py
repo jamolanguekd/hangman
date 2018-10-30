@@ -75,14 +75,19 @@ def print_word_finder():
     print()
 
 
-def print_game_status_anagram(int_lives, int_words_found, int_words_left, int_score, str_given,):
+def print_game_status_anagram(int_lives, int_words_found, int_words_left, int_score, str_given, right_words, wrong_words):
     clear_screen()
     print("-------------------- A N A G R A M   S E A R C H E R --------------------")
     print()
-    print("  LIVES :"+str(int_lives)+"        WORDS FOUND: "+str(int_words_found)+"    WORDS LEFT: "+str(int_words_left)+"            SCORE: "+str(int_score))
+    print("  LIVES: "+str(int_lives)+"        WORDS FOUND: "+str(int_words_found)+"    WORDS LEFT: "+str(int_words_left)+"            SCORE: "+str(int_score))
     print()
     print("-------------------------------------------------------------------------")
     print(" GIVEN WORD: "+str(str_given))
+    print("-------------------------------------------------------------------------")
+    #julia's changes
+    print(" CORRECT GUESSES: " + " ".join(right_words))
+    print("-------------------------------------------------------------------------")
+    print(" INCORRECT GUESSES: " + " ".join(wrong_words))
     print("-------------------------------------------------------------------------")
 
 
@@ -90,15 +95,15 @@ def print_game_status_wordfinder(int_lives, int_words_found, int_words_left, int
     clear_screen()
     print("------------------------- W O R D   F I N D E R -------------------------")
     print()
-    print("  LIVES :"+str(int_lives)+"        WORDS FOUND: "+str(int_words_found)+"    WORDS LEFT: "+str(int_words_left)+"            SCORE: "+str(int_score))
+    print("  LIVES: "+str(int_lives)+"        WORDS FOUND: "+str(int_words_found)+"    WORDS LEFT: "+str(int_words_left)+"            SCORE: "+str(int_score))
     print()
     print("-------------------------------------------------------------------------")
     print(" GIVEN WORD: "+str(str_given))
     print("-------------------------------------------------------------------------")
     #coleen's changes
-    print("CORRECT GUESSES: " + " ".join(right_words))
+    print(" CORRECT GUESSES: " + " ".join(right_words))
     print("-------------------------------------------------------------------------")
-    print("INCORRECT GUESSES: " + " ".join(wrong_words))
+    print(" INCORRECT GUESSES: " + " ".join(wrong_words))
     print("-------------------------------------------------------------------------")
 
 def main_menu():
@@ -152,7 +157,7 @@ def choose_difficulty():
 #julia's changes start here
 
 
-def print_you_win():
+def print_you_win(score):
     print(" __   __  _______  __   __      _     _  __  ________  _ ")
     print("|  | |  ||       ||  | |  |    | | _ | ||  ||    _   || |")
     print("|  |_|  ||   _   ||  | |  |    | || || ||  ||   | |  || |")
@@ -161,9 +166,13 @@ def print_you_win():
     print("  |   |  |       ||       |    |   _   ||  ||   | |  | _ ")
     print("  |___|  |_______||_______|    |__| |__||__||___| |__||_|")
     print()
+    print("---------------------------------------------------------")
+    print()
+    print("Score: " + str(score))
 
 
-def print_you_lose():
+
+def print_you_lose(remaining_word_list, score):
     print(" __   __  _______  __   __      __       _______  _______  _______ ")
     print("|  | |  ||       ||  | |  |    |  |     |       ||   _   ||   ____|")
     print("|  |_|  ||   _   ||  | |  |    |  |     |   _   ||  |_|__||  |____ ")
@@ -172,3 +181,9 @@ def print_you_lose():
     print("  |   |  |       ||       |    |  |____ |       ||  |_|  ||  |____ ")
     print("  |___|  |_______||_______|    |_______||_______||_______||_______|")
     print()
+    print("-------------------------------------------------------------------")
+    print()
+    print("Missed Words: " + " ".join(remaining_word_list))
+    print()
+    print("Score: " + str(score))
+
