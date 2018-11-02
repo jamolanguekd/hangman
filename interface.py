@@ -36,6 +36,15 @@ def print_menu():
     print("-------------------------------------------------------------------------")
     print()
 
+def print_help():
+    print("------------------------------- H E L P ---------------------------------")
+    print()
+    print("ULUL PRINT SHIT DITO DI KO NA ALAM HAHAHAHAH SEND HELP ON PROPER INSTRUCTIONS")
+    print()
+    print("                           1 - BACK TO MENU                              ")
+    print()
+    print("-------------------------------------------------------------------------")
+    print()
 
 def print_game_modes():
     print("------------------ C H O O S E   A   G A M E   M O D E ------------------")
@@ -155,6 +164,14 @@ def choose_difficulty():
             difficulty = "DIFFICULT"
             return difficulty
 
+def help():
+    while True:
+        clear_screen()
+        print_title()
+        print_help()
+        help_status= input()
+        if help_status=="1":
+            return "back"
 
 #julia's changes start here
 

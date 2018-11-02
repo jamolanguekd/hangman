@@ -285,5 +285,11 @@ while menu != "QUIT":
 
             menu = interface.main_menu()
 
+    elif menu=="HELP":
+        state = interface.help()
+        if state == "back":
+            menu="START"
+
+
 
 exit()
