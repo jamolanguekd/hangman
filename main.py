@@ -243,21 +243,28 @@ while menu != "QUIT":
             """
 
             right_words_inputted = []
+            bonus_words_inputted= []
             wrong_words_inputted = []
             while lives > 0 and len(search_list) > 0:
-                interface.print_game_status_wordfinder(lives, words_found, len(search_list), score, given,right_words_inputted,wrong_words_inputted)
+                interface.print_game_status_wordfinder(lives, words_found, len(search_list), score, given,right_words_inputted,bonus_words_inputted,wrong_words_inputted)
                 for item in found_list:
                     print(item)
                 word = str(input()).lower()
                 if engine.word_checker(given, word, dictionary):
-                    if word not in right_words_inputted:
-                        right_words_inputted.append(word)
+
                     score += engine.compute_score(word)
                     words_found += 1
                     if word in search_list:
+
+                        if word not in right_words_inputted:
+                            right_words_inputted.append(word)
+
                         found_list[search_list_copy.index(word)] = word
                         search_list.remove(word)
                         given = engine.char_generator(search_list)
+                    else:
+                        if word not in bonus_words_inputted:
+                            bonus_words_inputted.append(word)
 
                 else:
                     lives -= 1
@@ -265,7 +272,7 @@ while menu != "QUIT":
                         wrong_words_inputted.append(word)
 
                 interface.print_game_status_wordfinder(lives, words_found, len(search_list), score, given,
-                                                           right_words_inputted, wrong_words_inputted)
+                                                           right_words_inputted, bonus_words_inputted, wrong_words_inputted)
 
             if lives == 0:
                 interface.clear_screen()
