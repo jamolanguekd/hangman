@@ -13,29 +13,23 @@ lives = 0
 while menu != "QUIT":
 
     if menu == "START":
-        mode = interface.choose_mode()
-        if mode == "ANAGRAM SEARCHER":
 
-            difficulty = interface.choose_difficulty()
+        mode = interface.choose_mode()
+
+        if mode == "ANAGRAM SEARCHER":
 
             interface.print_anagram_searcher()
 
             score = 0
             words_found = 0
 
+            difficulty = interface.choose_difficulty()
+
+            lives, anagram_dictionary = engine.creating_anagram_mode_dictionary(difficulty, dictionary)
+
             while True:
-                if difficulty == "EASY":  # for easy difficulty, only words with 4 letters or fewer will be used
-                    lives, word_whose_anagrams_to_find, list_of_anagrams = engine.searching_for_anagrams_easy(
-                        dictionary)
+                word_whose_anagrams_to_find, list_of_anagrams = engine.searching_for_anagrams(anagram_dictionary)
 
-                elif difficulty == "NORMAL":  # for normal difficulty, only words with 4 to 6 letters will be used
-                    lives, word_whose_anagrams_to_find, list_of_anagrams = engine.searching_for_anagrams_normal(
-                        dictionary)
-
-                elif difficulty == "DIFFICULT":  # for difficult difficulty, only words with 6 letters or more will be used
-                    lives, word_whose_anagrams_to_find, list_of_anagrams = engine.searching_for_anagrams_difficult(
-                        dictionary)
-                    
                 right_words_inputted = []
                 wrong_words_inputted = []
 
@@ -46,6 +40,7 @@ while menu != "QUIT":
 
                     if word == "0":
                         menu = interface.main_menu()
+                        break
 
                     if engine.word_checker(word_whose_anagrams_to_find, word, list_of_anagrams):
                         score += engine.compute_score(word)
@@ -64,18 +59,14 @@ while menu != "QUIT":
                                                                   word_whose_anagrams_to_find, right_words_inputted, wrong_words_inputted)
 
                 if lives == 0:
-                    #interface.clear_screen()
                     interface.print_you_lose(list_of_anagrams, score)
-                    input()
-                else:
-                    #interface.clear_screen()
+                    break
+                elif lives > 0 and word != "0":
                     interface.print_you_win(score)
-                    input()
                     continue_value = interface.continue_game()
-                    if continue_value.lower() == "no":
-                        input()
+                    if continue_value == 2:
                         break
-            menu = interface.main_menu()
+            menu = "START"
 
         elif mode == "WORD FINDER":
 
@@ -179,10 +170,13 @@ while menu != "QUIT":
 
             menu = interface.main_menu()
 
-    elif menu=="HELP":
+        elif mode == "BACK":
+            menu = "START"
+
+    elif menu == "HELP":
         state = interface.help()
         if state == "back":
-            menu="START"
+            menu = "START"
 
 
 

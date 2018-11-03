@@ -1,5 +1,5 @@
 import random
-
+import interface
 
 def load_dictionary(filename):
     dictionary_file = open(filename)
@@ -16,6 +16,33 @@ def pick_words(list_dictionary, list_position):
         word_list.append(list_dictionary[int(position)])
     return word_list
 
+
+#original anagram searcher function
+'''
+def anagram_searcher(str_word_input, list_dictionary):
+    sorted_word = ''.join(sorted(str_word_input))
+    anagram_list = []
+    for word in list_dictionary:
+        if word != str_word_input:
+            if ''.join(sorted(word)) == sorted_word:
+                anagram_list.append(word)
+    anagram_list.sort()
+    return anagram_list
+'''
+
+
+#original new anagram searcher function
+'''
+def searching_for_anagrams_(list_of_words):
+    word = random.choice(list_of_words)
+    anagram_list = []
+    word_letters = sorted([n for n in word])
+    for i in list_of_words:
+        i_letters = sorted([n for n in i])
+        if i_letters == word_letters and i != word:
+            anagram_list.append(i)
+    return word, anagram_list
+'''
 
 def creating_anagram_mode_dictionary(difficulty, dictionary):
     if difficulty == "EASY":

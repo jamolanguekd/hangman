@@ -18,106 +18,109 @@ def clear_screen():
 
 
 def print_title():
-    print(" _     _  _______  ______    ______   _______  ___      _______  __   __")
-    print("| | _ | ||       ||    _ |  |      | |       ||   |    |   _   ||  | |  |")
-    print("| || || ||   _   ||   | ||  |  _    ||    _  ||   |    |  |_|  ||  |_|  |")
-    print("|       ||  | |  ||   |_||_ | | |   ||   |_| ||   |    |       ||       |")
-    print("|       ||  |_|  ||    __  || |_|   ||    ___||   |___ |       ||_     _|")
-    print("|   _   ||       ||   |  | ||       ||   |    |       ||   _   |  |   |")
-    print("|__| |__||_______||___|  |_||______| |___|    |_______||__| |__|  |___| ")
+    print("  _     _  _______  ______    ______   _______  ___      _______  __   __")
+    print(" | | _ | ||       ||    _ |  |      | |       ||   |    |   _   ||  | |  |")
+    print(" | || || ||   _   ||   | ||  |  _    ||    _  ||   |    |  |_|  ||  |_|  |")
+    print(" |       ||  | |  ||   |_||_ | | |   ||   |_| ||   |    |       ||       |")
+    print(" |       ||  |_|  ||    __  || |_|   ||    ___||   |___ |       ||_     _|")
+    print(" |   _   ||       ||   |  | ||       ||   |    |       ||   _   |  |   |")
+    print(" |__| |__||_______||___|  |_||______| |___|    |_______||__| |__|  |___| ")
     print()
 
 
 def print_menu():
-    print("-------------- MP LIGHTS BY DIZON, JAMOLANGUE, AND QUIRIM ---------------")
+    print("--------------- MP LIGHTS BY DIZON, JAMOLANGUE, AND QUIRIM ----------------")
     print()
-    print("          1 - START              2 - HELP             3 - QUIT           ")
+    print("           1 - START              2 - HELP             3 - QUIT            ")
     print()
-    print("-------------------------------------------------------------------------")
+    print("---------------------------------------------------------------------------")
     print()
 
 def print_help():
-    print("------------------------------- H E L P ---------------------------------")
+    print("-------------------------------- H E L P ----------------------------------")
     print()
     print("ULUL PRINT SHIT DITO DI KO NA ALAM HAHAHAHAH SEND HELP ON PROPER INSTRUCTIONS")
     print()
-    print("                           1 - BACK TO MENU                              ")
+    print("                           1 - BACK TO MAIN MENU                              ")
     print()
-    print("-------------------------------------------------------------------------")
+    print("---------------------------------------------------------------------------")
     print()
 
 def print_game_modes():
-    print("------------------ C H O O S E   A   G A M E   M O D E ------------------")
+    print("------------------- C H O O S E   A   G A M E   M O D E -------------------")
     print()
-    print("            1 - ANAGRAM SEARCHER              2 - WORD FINDER            ")
+    print("             1 - ANAGRAM SEARCHER              2 - WORD FINDER             ")
     print()
-    print("-------------------------------------------------------------------------")
+    print("                           3 - BACK TO MAIN MENU")
+    print()
+    print("---------------------------------------------------------------------------")
     print()
 
 
 def print_difficulty():
-    print("--------------- C H O O S E   T H E   D I F F I C U L T Y ---------------")
+    print("---------------- C H O O S E   T H E   D I F F I C U L T Y ----------------")
     print()
-    print("             1 - EASY         2 - NORMAL       3 - DIFFICULT             ")
+    print("              1 - EASY         2 - NORMAL       3 - DIFFICULT              ")
     print()
-    print("-------------------------------------------------------------------------")
+    print("---------------------------------------------------------------------------")
     print()
 
 
 def print_anagram_searcher():
     clear_screen()
-    print("-------------------- A N A G R A M   S E A R C H E R --------------------")
+    print("--------------------- A N A G R A M   S E A R C H E R ---------------------")
     print()
     print(" In this game mode, you have to find all the anagrams of the given word. ")
     print()
-    print("-------------------------------------------------------------------------")
+    print("---------------------------------------------------------------------------")
     print()
 
 
 def print_word_finder():
     clear_screen()
-    print("------------------------- W O R D   F I N D E R -------------------------")
+    print("-------------------------- W O R D   F I N D E R --------------------------")
     print()
-    print("      In this game mode, find all possible words from the sequence.      ")
+    print("In this game mode, find all possible words from the sequence of characters.")
     print()
-    print("-------------------------------------------------------------------------")
+    print("---------------------------------------------------------------------------")
     print()
 
 
 def print_game_status_anagram(int_lives, int_words_found, int_words_left, int_score, str_given, right_words, wrong_words):
     clear_screen()
-    print("-------------------- A N A G R A M   S E A R C H E R --------------------")
+    print("--------------------- A N A G R A M   S E A R C H E R ---------------------")
     print()
-    print("  LIVES: "+str(int_lives)+"        WORDS FOUND: "+str(int_words_found)+"    WORDS LEFT: "+str(int_words_left)+"            SCORE: "+str(int_score))
+    print("   LIVES: "+str(int_lives)+"        WORDS FOUND: "+str(int_words_found)+"    WORDS LEFT: "+str(int_words_left)+"            SCORE: "+str(int_score))
     print()
-    print("-------------------------------------------------------------------------")
+    print("---------------------------------------------------------------------------")
+    print()
     print(" GIVEN WORD: "+str(str_given))
-    print("-------------------------------------------------------------------------")
-    #julia's changes
+    print()
     print(" CORRECT GUESSES: " + " ".join(right_words))
-    print("-------------------------------------------------------------------------")
+    print()
     print(" INCORRECT GUESSES: " + " ".join(wrong_words))
-    print("-------------------------------------------------------------------------")
-    print("Input '0' to return to the main menu.")
+    print()
+    print("---------------------------------------------------------------------------")
 
 
 def print_game_status_wordfinder(int_lives, int_words_found, int_words_left, int_score, str_given, right_words, bonus_words, wrong_words):
     clear_screen()
-    print("------------------------- W O R D   F I N D E R -------------------------")
+    print("-------------------------- W O R D   F I N D E R --------------------------")
     print()
     print("  LIVES: "+str(int_lives)+"        WORDS FOUND: "+str(int_words_found)+"    WORDS LEFT: "+str(int_words_left)+"            SCORE: "+str(int_score))
     print()
-    print("-------------------------------------------------------------------------")
+    print("---------------------------------------------------------------------------")
+    print()
     print(" GIVEN WORD: "+str(str_given))
-    print("-------------------------------------------------------------------------")
-    #coleen's changes
+    print()
     print(" CORRECT WORDS: " + " ".join(right_words))
-    print("-------------------------------------------------------------------------")
+    print()
     print(" BONUS WORDS: " + " ".join(bonus_words))
-    print("-------------------------------------------------------------------------")
+    print()
     print(" INCORRECT GUESSES: " + " ".join(wrong_words))
-    print("-------------------------------------------------------------------------")
-    print(" Input '0' to return to the main menu.")
+    print()
+    print("---------------------------------------------------------------------------")
+
 
 def main_menu():
     while True:
@@ -147,6 +150,9 @@ def choose_mode():
             return mode
         elif mode == "2":
             mode = "WORD FINDER"
+            return mode
+        elif mode == "3":
+            mode = "BACK"
             return mode
 
 
@@ -179,40 +185,45 @@ def help():
 
 
 def print_you_win(score):
-    print(" __   __  _______  __   __      _     _  __  ________  _ ")
-    print("|  | |  ||       ||  | |  |    | | _ | ||  ||    _   || |")
-    print("|  |_|  ||   _   ||  | |  |    | || || ||  ||   | |  || |")
-    print("|       ||  | |  ||  | |  |    |       ||  ||   | |  || |")
-    print("|_     _||  |_|  ||  |_|  |    |       ||  ||   | |  ||_|")
-    print("  |   |  |       ||       |    |   _   ||  ||   | |  | _ ")
-    print("  |___|  |_______||_______|    |__| |__||__||___| |__||_|")
+    clear_screen()
+    print("---------------------- C O N G R A T U L A T I O N S ----------------------")
+    print("          __   __  _______  __   __      _     _  __  ________  _ ")
+    print("         |  | |  ||       ||  | |  |    | | _ | ||  ||    _   || |")
+    print("         |  |_|  ||   _   ||  | |  |    | || || ||  ||   | |  || |")
+    print("         |       ||  | |  ||  | |  |    |       ||  ||   | |  || |")
+    print("         |_     _||  |_|  ||  |_|  |    |       ||  ||   | |  ||_|")
+    print("           |   |  |       ||       |    |   _   ||  ||   | |  | _ ")
+    print("           |___|  |_______||_______|    |__| |__||__||___| |__||_|")
     print()
-    print("---------------------------------------------------------")
+    print("---------------------------------------------------------------------------")
     print()
-    print("Score: " + str(score))
-
+    print(" Score: " + str(score))
 
 
 def print_you_lose(remaining_word_list, score):
-    print(" __   __  _______  __   __      __       _______  _______  _______ ")
-    print("|  | |  ||       ||  | |  |    |  |     |       ||   _   ||   ____|")
-    print("|  |_|  ||   _   ||  | |  |    |  |     |   _   ||  |_|__||  |____ ")
-    print("|       ||  | |  ||  | |  |    |  |     |  | |  ||____   ||   ____|")
-    print("|_     _||  |_|  ||  |_|  |    |  |     |  |_|  | __  |  ||  |     ")
-    print("  |   |  |       ||       |    |  |____ |       ||  |_|  ||  |____ ")
-    print("  |___|  |_______||_______|    |_______||_______||_______||_______|")
+    clear_screen()
+    print("------------------------------ T O O   B A D ------------------------------")
+    print("     __   __  _______  __   __      __       _______  _______  _______ ")
+    print("    |  | |  ||       ||  | |  |    |  |     |       ||   _   ||   ____|")
+    print("    |  |_|  ||   _   ||  | |  |    |  |     |   _   ||  |_|__||  |____ ")
+    print("    |       ||  | |  ||  | |  |    |  |     |  | |  ||____   ||   ____|")
+    print("    |_     _||  |_|  ||  |_|  |    |  |     |  |_|  | __  |  ||  |     ")
+    print("      |   |  |       ||       |    |  |____ |       ||  |_|  ||  |____ ")
+    print("      |___|  |_______||_______|    |_______||_______||_______||_______|")
     print()
-    print("-------------------------------------------------------------------")
+    print("---------------------------------------------------------------------------")
     print()
-    print("Missed Words: " + " ".join(remaining_word_list))
+    print(" Missed Words: " + " ".join(remaining_word_list))
     print()
-    print("Score: " + str(score))
+    print(" Score: " + str(score))
+    print()
+    input(" Press Enter to continue.")
 
 
 def continue_game():
-    clear_screen()
-    print("Congratulations! You have guessed all the anagrams of that word.")
-    print("Would you like to keep guessing more anagrams?")
-    print("Yes/No?")
-    continue_value = input()
+    print()
+    print(" Would you like to keep guessing more anagrams?")
+    print()
+    print(" 1. Yes   2. No")
+    continue_value = int(input())
     return continue_value
