@@ -101,6 +101,7 @@ def print_game_status_anagram(int_lives, int_words_found, int_words_left, int_sc
     print(" INCORRECT GUESSES: " + " ".join(wrong_words))
     print()
     print("---------------------------------------------------------------------------")
+    print(" 1- EXIT GAME")
 
 
 def print_game_status_wordfinder(int_lives, int_words_found, int_words_left, int_score, str_given, right_words, bonus_words, wrong_words):
@@ -120,6 +121,7 @@ def print_game_status_wordfinder(int_lives, int_words_found, int_words_left, int
     print(" INCORRECT GUESSES: " + " ".join(wrong_words))
     print()
     print("---------------------------------------------------------------------------")
+    print(" 1- EXIT GAME")
 
 
 def main_menu():
@@ -179,7 +181,7 @@ def help():
         print_help()
         help_status= input()
         if help_status=="1":
-            return "back"
+            return "BACK"
 
 #julia's changes start here
 
