@@ -17,26 +17,36 @@ def pick_words(list_dictionary, list_position):
     return word_list
 
 
-def creating_anagram_mode_dictionary(difficulty, dictionary):
+def generate_lives(mode, difficulty):
+    if mode == "ANAGRAM SEARCHER":
+        if difficulty == "EASY":
+            lives = 10
+        elif difficulty == "NORMAL":
+            lives = 5
+        elif difficulty == "DIFFICULT":
+            lives = 3
+
+    return lives
+
+
+def generate_anagram_dict(difficulty, dictionary):
     if difficulty == "EASY":
-        lives = 10
         anagram_dictionary = []
         for word in dictionary:
             if len(word) <= 4:
                 anagram_dictionary.append(word)
     elif difficulty == "NORMAL":
-        lives = 5
         anagram_dictionary = []
         for word in dictionary:
             if 4 < len(word) <= 7:
                 anagram_dictionary.append(word)
     elif difficulty == "DIFFICULT":
-        lives = 3
         anagram_dictionary = []
         for word in dictionary:
             if len(word) > 7:
                 anagram_dictionary.append(word)
-    return lives, anagram_dictionary
+    return anagram_dictionary
+
 
 def searching_for_anagrams(list_of_words):
     while True:

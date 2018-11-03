@@ -9,12 +9,15 @@ difficulty = ""
 
 lives = 0
 
+# GAME WILL RUN UNTIL THE USER QUITS FROM THE MAIN MENU
 while menu != "QUIT":
 
+    # WHEN THE USER PRESSES START
     if menu == "START":
 
         mode = interface.choose_mode()
 
+        # SELECT ANAGRAM SEARCHER
         if mode == "ANAGRAM SEARCHER":
 
             interface.print_anagram_searcher()
@@ -24,14 +27,15 @@ while menu != "QUIT":
 
             difficulty = interface.choose_difficulty()
 
-            lives, anagram_dictionary = engine.creating_anagram_mode_dictionary(difficulty, dictionary)
+            lives = engine.generate_lives(mode, difficulty)
+            anagram_dictionary = engine.generate_anagram_dict(difficulty, dictionary)
 
             while True:
                 word_whose_anagrams_to_find, list_of_anagrams = engine.searching_for_anagrams(anagram_dictionary)
 
                 right_words_inputted = []
                 wrong_words_inputted = []
-                state=True
+                state = True
 
                 while lives > 0 and len(list_of_anagrams) > 0:
                     interface.print_game_status_anagram(lives, words_found, len(list_of_anagrams), score,
@@ -39,7 +43,7 @@ while menu != "QUIT":
                     word = str(input()).lower()
 
                     if word == "1":
-                        state= False
+                        state = False
                         break
 
                     else:
@@ -72,7 +76,6 @@ while menu != "QUIT":
                 if state==False:
                     menu = interface.main_menu()
                     break
-
 
         elif mode == "WORD FINDER":
 
