@@ -118,19 +118,19 @@ def generate_anagram_dict(str_difficulty, list_dict):
     if str_difficulty == "EASY":
         anagram_dictionary = []
         for word in list_dict:
-            if len(word) <= 4:
+            if len(word) == 3:
                 anagram_dictionary.append(word)
 
     elif str_difficulty == "NORMAL":
         anagram_dictionary = []
         for word in list_dict:
-            if 4 < len(word) <= 7:
+            if len(word) == 4:
                 anagram_dictionary.append(word)
 
     elif str_difficulty == "DIFFICULT":
         anagram_dictionary = []
         for word in list_dict:
-            if len(word) > 7:
+            if len(word) == 5:
                 anagram_dictionary.append(word)
     return anagram_dictionary
 
