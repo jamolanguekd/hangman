@@ -31,10 +31,9 @@ while menu != "QUIT":
             anagram_dictionary = engine.generate_anagram_dict(difficulty, dictionary)
 
             continue_state = True
-            stop_game = False
 
             # WHILE THE USER HAS AND WANTS TO CONTINUE PLAYING
-            while continue_state and stop_game==False:
+            while continue_state:
                 list_anagrams = []
                 while len(list_anagrams) == 0:
                     given_word = engine.picking_words_anagram(anagram_dictionary)
@@ -51,7 +50,8 @@ while menu != "QUIT":
 
                     # USER CHOOSES TO EXIT MID-GAME
                     if input_word == "1":
-                        stop_game=True
+                        continue_state = False
+                        mode = ''
                         break
 
                     # USERS ATTEMPTS TO ANSWER
@@ -92,15 +92,9 @@ while menu != "QUIT":
                 # USER WINS
                 elif lives > 0 and input_word != "1":
                     continue_state = interface.continue_game(True, list_anagrams_left, score)
-
-                    # USER WANTS TO CONTINUE PLAYING
-                    # DO NOTHING
-
-                    # USER WANTS TO QUIT PLAYING
                     mode = ""
 
-
-            menu= interface.main_menu()
+        menu = interface.main_menu()
 
         while mode == "WORD FINDER":
 
