@@ -158,9 +158,6 @@ while menu != "QUIT":
                                 score += engine.compute_score(input_word)
                                 words_found += 1
 
-
-
-
                         # BONUS ATTEMPT
                         elif engine.word_checker_wordfinder(given_word, input_word, dictionary):
 
