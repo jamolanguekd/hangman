@@ -36,15 +36,71 @@ def print_menu():
     print("---------------------------------------------------------------------------")
     print()
 
-def print_help():
+
+def print_help_general():
     print("-------------------------------- H E L P ----------------------------------")
     print()
-    print("ULUL PRINT SHIT DITO DI KO NA ALAM HAHAHAHAH SEND HELP ON PROPER INSTRUCTIONS")
-    print()
-    print("                           1 - BACK TO MAIN MENU                              ")
+    print("          -------------------------------------------------------          ")
+    print("         |           G E N E R A L   M E C H A N I C S           |")
+    print("         |-------------------------------------------------------|")
+    print("         |    Both  game  modes  have  three  difficulties  to   |")
+    print("         |    choose from: easy,  normal,  and  difficult. The   |")
+    print("         |    only  differences between  each  difficulty  are   |")
+    print("         |    the length of the words included  and the number   |")
+    print("         |    of lives given to the player. 10 for easy, 5 for   |")
+    print("         |    normal, and 3 for difficult.                       |")
+    print("         |                                                       |")
+    print("         |    Points are rewarded based on the letters in each   |")
+    print("         |    correctly guessed word.                            |")
+    print("         |                                                       |")
+    print("         |    After every game,  there will be a prompt asking   |")
+    print("         |    if you would like to continue.  If you choose to   |")
+    print("         |    do  so,  your lives  and  your score  will  both   |")
+    print("         |    be retained.                                       |")
+    print("          -------------------------------------------------------          ")
+    print("                           PRESS ENTER TO CONTINUE")
     print()
     print("---------------------------------------------------------------------------")
     print()
+
+
+def print_help_anagram():
+    print("-------------------------------- H E L P ----------------------------------")
+    print()
+    print("          -------------------------------------------------------          ")
+    print("         |            A N A G R A M   S E A R C H E R            |")
+    print("         |-------------------------------------------------------|")
+    print("         |    Given a three-, four-, or five-letter word, you    |")
+    print("         |    must  enter  all  the  anagrams  of  that  word    |")
+    print("         |    that can be found in the dictionary.               |")
+    print("         |                                                       |")
+    print("         |    Easy: three-letter words                           |")
+    print("         |    Normal: four-letter words                          |")
+    print("         |    Difficult: five-letter words                       |")
+    print("          -------------------------------------------------------")
+    print("                           PRESS ENTER TO CONTINUE")
+    print()
+    print("---------------------------------------------------------------------------")
+    print()
+
+
+def print_help_wordfinder():
+    print("-------------------------------- H E L P ----------------------------------")
+    print()
+    print("          -------------------------------------------------------          ")
+    print("         |                 W O R D   F I N D E R                 |")
+    print("         |-------------------------------------------------------|")
+    print("         |    hi patulong po sa pagsulat ng help nito hehe       |")
+    print("         |                                                       |")
+    print("         |    Easy: words with four or fewer letters             |")
+    print("         |    Normal: words with six or fewer letters            |")
+    print("         |    Difficult: all words                               |")
+    print("          -------------------------------------------------------")
+    print("                           1 - BACK TO MAIN MENU")
+    print()
+    print("---------------------------------------------------------------------------")
+    print()
+
 
 def print_game_modes():
     print("------------------- C H O O S E   A   G A M E   M O D E -------------------")
@@ -179,7 +235,15 @@ def help():
     while True:
         clear_screen()
         print_title()
-        print_help()
+        print_help_general()
+        input()
+        clear_screen()
+        print_title()
+        print_help_anagram()
+        input()
+        clear_screen()
+        print_title()
+        print_help_wordfinder()
         help_status= input()
         if help_status=="1":
             return "BACK"
@@ -202,7 +266,7 @@ def print_you_win(score):
     print()
     print(" SCORE: " + str(score))
     print()
-    print(" Would you like to keep guessing more anagrams?")
+    print(" Would you like to keep guessing more words?")
     print()
     print(" 1 - Yes   2 - No")
 
