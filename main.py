@@ -31,9 +31,10 @@ while menu != "QUIT":
             anagram_dictionary = engine.generate_anagram_dict(difficulty, dictionary)
 
             continue_state = True
+            stop_game = False
 
             # WHILE THE USER HAS AND WANTS TO CONTINUE PLAYING
-            while continue_state:
+            while continue_state and stop_game==False:
                 list_anagrams = []
                 while len(list_anagrams) == 0:
                     given_word = engine.picking_words_anagram(anagram_dictionary)
@@ -50,6 +51,7 @@ while menu != "QUIT":
 
                     # USER CHOOSES TO EXIT MID-GAME
                     if input_word == "1":
+                        stop_game=True
                         break
 
                     # USERS ATTEMPTS TO ANSWER
@@ -73,18 +75,19 @@ while menu != "QUIT":
                             interface.print_anagram_status(lives, words_found, len(list_anagrams_left), score,
                                                            given_word, list_correct_guesses,
                                                            list_incorrect_guesses)
+
                 # USER LOSES
                 if lives == 0 and input_word != "1":
-                    continue_state = interface.continue_game(False, list_anagrams_left, score)
+                        continue_state = interface.continue_game(False, list_anagrams_left, score)
 
-                    # USER WANTS TO PLAY ANAGRAM AGAIN
-                    if continue_state:
-                        break
+                        # USER WANTS TO PLAY ANAGRAM AGAIN
+                        if continue_state:
+                            break
 
-                    # USER DOESN'T WANT TO PLAY ANAGRAMS ANYMORE
-                    else:
-                        mode = ""
-                        break
+                        # USER DOESN'T WANT TO PLAY ANAGRAMS ANYMORE
+                        else:
+                            mode = ""
+                            break
 
                 # USER WINS
                 elif lives > 0 and input_word != "1":
@@ -95,6 +98,9 @@ while menu != "QUIT":
 
                     # USER WANTS TO QUIT PLAYING
                     mode = ""
+
+
+            menu= interface.main_menu()
 
         while mode == "WORD FINDER":
 
