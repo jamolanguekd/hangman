@@ -33,7 +33,5 @@ test_cases = int(input())
 for i in range(test_cases):
     word_input = str(input())
     matching_words = anagram_searcher(word_input, dictionary)
-
-    for item in matching_words:
-        print(item, end=' ')
-    print()
+    x = " ".join(matching_words)
+    print(x)

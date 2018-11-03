@@ -1,7 +1,6 @@
 import interface
 import engine
 import random
-import itertools
 
 dictionary = engine.load_dictionary("dictionary.txt")
 menu = interface.main_menu()

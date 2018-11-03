@@ -21,6 +21,5 @@ test_cases = int(input())
 for i in range(test_cases):
     word_pos = str(input())
     new_word_list = word_picker(dictionary, word_pos)
-    for word in new_word_list:
-        print(word, end=' ')
-    print()
+    x = " ".join(new_word_list)
+    print(x)
