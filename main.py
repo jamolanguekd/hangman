@@ -3,7 +3,7 @@ import engine
 import random
 
 dictionary = engine.load_dictionary("dictionary.txt")
-menu = interface.main_menu()
+menu = ""
 mode = ""
 difficulty = ""
 
@@ -12,8 +12,10 @@ lives = 0
 # GAME WILL RUN UNTIL THE USER QUITS FROM THE MAIN MENU
 while menu != "QUIT":
 
+    menu = interface.main_menu()
+
     # WHEN THE USER PRESSES START
-    if menu == "START":
+    while menu == "START":
 
         mode = interface.choose_mode()
 
@@ -64,17 +66,15 @@ while menu != "QUIT":
                             if engine.attempt_checker(input_word, list_correct_guesses):
                                 score += engine.compute_score(input_word)
                                 words_found += 1
-                            interface.print_anagram_status(lives, words_found, len(list_anagrams_left), score,
-                                                           given_word, list_correct_guesses,
-                                                           list_incorrect_guesses)
 
                         # INCORRECT ATTEMPT
                         else:
                             if engine.attempt_checker(input_word, list_incorrect_guesses):
                                 lives -= 1
-                            interface.print_anagram_status(lives, words_found, len(list_anagrams_left), score,
-                                                           given_word, list_correct_guesses,
-                                                           list_incorrect_guesses)
+
+                        interface.print_anagram_status(lives, words_found, len(list_anagrams_left), score,
+                                                       given_word, list_correct_guesses,
+                                                       list_incorrect_guesses)
 
                 # USER LOSES
                 if lives == 0 and input_word != "1":
@@ -92,125 +92,127 @@ while menu != "QUIT":
                 # USER WINS
                 elif lives > 0 and input_word != "1":
                     continue_state = interface.continue_game(True, list_anagrams_left, score)
-                    mode = ""
+                    # USER WANTS TO CONTINUE
+                    # do nothing
 
-        menu = interface.main_menu()
+                    # USER WANTS TO END
+                    if not continue_state:
+                        mode = ""
 
         while mode == "WORD FINDER":
 
-            difficulty = interface.choose_difficulty()
-
-            lives = 0
-            score = 0
-            words_found = 0
-            word_total = 0
-            scramble_dictionary = []
-
-            if difficulty == "EASY":  # easy mode includes only words with 4 letters and fewer
-                lives = 10
-                word_total = 5
-                easy_dictionary = []
-                for input_word in dictionary:
-                    if len(input_word) <= 4:
-                        easy_dictionary.append(input_word)
-                scramble_dictionary = [n for n in easy_dictionary]
-            elif difficulty == "NORMAL":  # normal mode includes words with 6 letters and fewer
-                lives = 5
-                word_total = 5
-                normal_dictionary = []
-                for input_word in dictionary:
-                    if len(input_word) <= 6:
-                        normal_dictionary.append(input_word)
-                scramble_dictionary = [n for n in normal_dictionary]
-            elif difficulty == "DIFFICULT":  # difficult mode includes all words
-                lives = 3
-                word_total = 5
-                scramble_dictionary = [n for n in dictionary]
-
-            search_list = engine.picking_words_wordfinder(scramble_dictionary, random.sample(range(0, len(scramble_dictionary) - 1), word_total))
-            search_list_copy = search_list.copy()
-
-            given = engine.char_generator(search_list)
-
-            # WORDS TO FIND WITH BLANKS
-            found_list = []
-            for input_word in search_list:
-                x = list(input_word)
-                for i in range(len(x)):
-                    x[i] = "_"
-
-                revealed_count = 0
-                if len(x) <= 4:
-                    revealed_count = 2
-
-                elif 4 < len(x) <= 8:
-                    revealed_count = 4
-
-                while x.count("_") != len(x) - revealed_count:
-                    pos = 0
-                    while x[pos] != "_":
-                        pos = random.randint(0, len(x)- 1)
-                    x[pos] = input_word[pos]
-                found_list.append("".join(x))
-
             interface.print_word_finder()
 
-            list_correct_guesses = []
-            bonus_words_inputted= []
-            list_incorrect_guesses = []
-            while lives > 0 and len(search_list) > 0:
-                interface.print_wordfinder_status(lives, words_found, len(search_list), score, given, list_correct_guesses, bonus_words_inputted, list_incorrect_guesses)
-                for item in found_list:
-                    print(item)
-                input_word = str(input()).lower()
+            score = 0
+            words_found = 0
 
-                if input_word== "1":
-                    #menu = interface.main_menu()
-                    break
-                else:
-                    if engine.word_checker(given, input_word, dictionary):
+            # USER SELECTS DIFFICULTY
+            difficulty = interface.choose_difficulty()
+            lives = engine.generate_lives(mode, difficulty)
+            word_total = engine.generate_word_total(difficulty)
 
-                        score += engine.compute_score(input_word)
-                        words_found += 1
-                        if input_word in search_list:
+            # GENERATE WORD LIST
+            wordfinder_dictionary = engine.generate_wordfinder_dict(difficulty, dictionary)
 
-                            if input_word not in list_correct_guesses:
-                                list_correct_guesses.append(input_word)
+            continue_state = True
 
-                            found_list[search_list_copy.index(input_word)] = input_word
-                            search_list.remove(input_word)
-                            given = engine.char_generator(search_list)
-                        else:
-                            if input_word not in bonus_words_inputted:
-                                bonus_words_inputted.append(input_word)
+            while continue_state:
 
+                list_positions = engine.generate_positions(word_total, wordfinder_dictionary)
+                list_words = engine.picking_words_wordfinder(wordfinder_dictionary, list_positions)
+                list_words_left = list_words.copy()
+
+                given_word = engine.char_generator(list_words_left)
+
+                # WORDS TO FIND WITH BLANKS
+                list_blank = engine.generate_blanks(list_words_left)
+
+                interface.print_word_finder()
+
+                list_correct_guesses = []
+                list_bonus_guesses = []
+                list_incorrect_guesses = []
+
+                while lives > 0 and len(list_words_left) > 0:
+
+                    interface.print_wordfinder_status(lives, words_found, len(list_words_left), score, given_word,
+                                                      list_blank, list_bonus_guesses, list_incorrect_guesses)
+
+                    input_word = str(input()).lower()
+
+                    # USER DECIDES TO EXIT MIDGAME
+                    if input_word == "1":
+                        continue_state = False
+                        mode = ""
+                        break
+
+                    # USER ATTEMPTS A GUESS
                     else:
-                        lives -= 1
-                        if input_word not in list_incorrect_guesses:
-                            list_incorrect_guesses.append(input_word)
 
-                    interface.print_wordfinder_status(lives, words_found, len(search_list), score, given,
-                                                      list_correct_guesses, bonus_words_inputted, list_incorrect_guesses)
+                        # CORRECT ATTEMPT
+                        if engine.word_checker_wordfinder(given_word, input_word, list_words_left):
+                            list_words_left.remove(input_word)
 
-            if lives == 0 and input_word!= "1":
-                interface.clear_screen()
-                interface.print_you_lose(search_list, score)
-                input()
-            elif lives>0 and input_word!= "1":
-                interface.clear_screen()
-                interface.print_you_win(score)
-                input()
+                            # VALID ATTEMPT
+                            if engine.attempt_checker(input_word, list_correct_guesses):
+                                score += engine.compute_score(input_word)
+                                words_found += 1
 
-            menu = interface.main_menu()
+
+
+
+                        # BONUS ATTEMPT
+                        elif engine.word_checker_wordfinder(given_word, input_word, dictionary):
+
+                            # VALID ATTEMPT
+                            if engine.attempt_checker(input_word, list_bonus_guesses):
+                                score += engine.compute_score(input_word)
+
+                        # INCORRECT ATTEMPT
+                        else:
+                            if engine.attempt_checker(input_word, list_incorrect_guesses):
+                                lives -= 1
+
+                        list_blank = engine.update_blanks(list_blank, list_correct_guesses, list_words)
+                        interface.print_wordfinder_status(lives, words_found, len(list_words_left), score, given_word,
+                                                          list_blank, list_bonus_guesses, list_incorrect_guesses)
+
+                # USER LOSES
+                if lives == 0 and input_word != "1":
+                    continue_state = interface.continue_game(False, list_words_left, score)
+
+                    # USER STILL WANTS TO PLAY WORD FINDER
+                    if continue_state:
+                        break
+
+                    # USER DOESNT WANNA PLAY ANYMORE
+                    else:
+                        mode = ""
+                        break
+
+                # USER WINS
+                elif lives > 0 and input_word != "1":
+                    continue_state = interface.continue_game(True, list_words_left, score)
+
+                    # USER STILL WANTS TO PLAY
+                    # do nothing
+
+                    # USER DOESN'T WANT TO PLAY
+                    if not continue_state:
+                        mode = ""
 
         while mode == "BACK":
-            menu = interface.main_menu()
-            break
+            mode = ""
 
-    elif menu == "HELP":
+        menu = ""
+
+    # WHEN THE USER PRESSES HELP
+    while menu == "HELP":
+
         mode = interface.help()
 
         if mode == "BACK":
-            menu = interface.main_menu()
+            menu = ""
+            break
 
 exit()

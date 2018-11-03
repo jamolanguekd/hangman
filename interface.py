@@ -102,10 +102,12 @@ def print_anagram_status(int_lives, int_words_found, int_words_left, int_score, 
     print(" INCORRECT GUESSES: " + " ".join(list_incorrect_guesses))
     print()
     print(" (Please input '1' to exit the game.)")
+    print()
     print("---------------------------------------------------------------------------")
 
 
-def print_wordfinder_status(int_lives, int_words_found, int_words_left, int_score, str_given, right_words, bonus_words, wrong_words):
+def print_wordfinder_status(int_lives, int_words_found, int_words_left, int_score, str_given, list_correct_guesses, list_bonus_guesses,
+                            list_incorrect_guesses):
     clear_screen()
     print("-------------------------- W O R D   F I N D E R --------------------------")
     print()
@@ -115,14 +117,16 @@ def print_wordfinder_status(int_lives, int_words_found, int_words_left, int_scor
     print()
     print(" GIVEN WORD: "+str(str_given))
     print()
-    print(" CORRECT WORDS: " + " ".join(right_words))
+    print(" BONUS WORDS: " + " ".join(list_bonus_guesses))
     print()
-    print(" BONUS WORDS: " + " ".join(bonus_words))
-    print()
-    print(" INCORRECT GUESSES: " + " ".join(wrong_words))
+    print(" INCORRECT GUESSES: " + " ".join(list_incorrect_guesses))
     print()
     print(" (Please input '1' to exit the game.)")
+    print()
     print("---------------------------------------------------------------------------")
+    print(" WORDS TO FIND:")
+    for i in list_correct_guesses:
+        print(" "+str(i))
 
 
 def main_menu():
@@ -202,7 +206,7 @@ def print_you_win(score):
     print()
     print(" SCORE: " + str(score))
     print()
-    print(" Would you like to keep guessing more anagrams?")
+    print(" Would you like to keep guessing more words?")
     print()
     print(" 1 - Yes   2 - No")
 

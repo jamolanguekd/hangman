@@ -1,8 +1,8 @@
 import random
 
 
-def load_dictionary(filename):
-    dictionary_file = open(filename)
+def load_dictionary(str_filename):
+    dictionary_file = open(str_filename)
     dictionary_list = []
     for line in dictionary_file.read().splitlines():
         dictionary_list.append(line)
@@ -21,16 +21,97 @@ def picking_words_anagram(list_dictionary):
     return word
 
 
-def generate_lives(mode, difficulty):
-    if mode == "ANAGRAM SEARCHER":
-        if difficulty == "EASY":
+def update_blanks(list_blank, list_correct_guesses, list_words):
+    for guess in list_correct_guesses:
+        list_blank[list_words.index(guess)] = guess
+
+    return list_blank
+
+
+def generate_blanks(list_words):
+    list_blank = []
+    for word in list_words:
+        ch = list(word)
+        for i in range(len(ch)):
+            ch[i] = "_"
+
+        if len(ch) <= 4:
+            revealed_count = 2
+
+        elif 4 < len(ch) <= 7:
+            revealed_count = 3
+
+        else:
+            revealed_count = 4
+
+        while ch.count("_") != len(ch) - revealed_count:
+            while True:
+                pos = random.randint(0, len(ch) - 1)
+                if ch[pos] == "_":
+                    break
+            ch[pos] = word[pos]
+        list_blank.append("".join(ch))
+
+    return list_blank
+
+
+def generate_positions(int_words_total, list_dict):
+    position_list = []
+    while len(position_list) < int_words_total:
+        pos = random.randint(0, len(list_dict)-1)
+        if pos not in position_list:
+            position_list.append(pos)
+    return position_list
+
+
+def generate_lives(str_mode, str_difficulty):
+    if str_mode == "ANAGRAM SEARCHER":
+        if str_difficulty == "EASY":
             lives = 10
-        elif difficulty == "NORMAL":
+        elif str_difficulty == "NORMAL":
             lives = 5
-        elif difficulty == "DIFFICULT":
+        elif str_difficulty == "DIFFICULT":
+            lives = 3
+
+    elif str_mode == "WORD FINDER":
+        if str_difficulty == "EASY":
+            lives = 10
+        elif str_difficulty == "NORMAL":
+            lives = 5
+        elif str_difficulty == "DIFFICULT":
             lives = 3
 
     return lives
+
+
+def generate_word_total(str_difficulty):
+    if str_difficulty == "EASY":
+        word_total = 5
+    elif str_difficulty == "NORMAL":
+        word_total = 5
+    elif str_difficulty == "DIFFICULT":
+        word_total = 5
+    return word_total
+
+
+def generate_wordfinder_dict(str_difficulty, list_dict):
+    if str_difficulty == "EASY":
+        wordfinder_dictionary = []
+        for word in list_dict:
+            if len(word) <= 4:
+                wordfinder_dictionary.append(word)
+
+    elif str_difficulty == "NORMAL":
+        wordfinder_dictionary = []
+        for word in list_dict:
+            if len(word) <= 6:
+                wordfinder_dictionary.append(word)
+                wordfinder_dictionary.append(word)
+
+    elif str_difficulty == "DIFFICULT":  # difficult mode includes all words
+        wordfinder_dictionary = list_dict.copy()
+
+    return wordfinder_dictionary
 
 
 def generate_anagram_dict(str_difficulty, list_dict):
@@ -39,11 +120,13 @@ def generate_anagram_dict(str_difficulty, list_dict):
         for word in list_dict:
             if len(word) <= 4:
                 anagram_dictionary.append(word)
+
     elif str_difficulty == "NORMAL":
         anagram_dictionary = []
         for word in list_dict:
             if 4 < len(word) <= 7:
                 anagram_dictionary.append(word)
+
     elif str_difficulty == "DIFFICULT":
         anagram_dictionary = []
         for word in list_dict:
