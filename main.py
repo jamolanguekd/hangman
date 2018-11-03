@@ -33,13 +33,14 @@ while menu != "QUIT":
             while True:
                 word_whose_anagrams_to_find, list_of_anagrams = engine.searching_for_anagrams(anagram_dictionary)
 
-                right_words_inputted = []
-                wrong_words_inputted = []
+                list_correct_guesses = []
+                list_incorrect_guesses = []
                 state = True
 
                 while lives > 0 and len(list_of_anagrams) > 0:
-                    interface.print_game_status_anagram(lives, words_found, len(list_of_anagrams), score,
-                                                              word_whose_anagrams_to_find, right_words_inputted, wrong_words_inputted)
+                    interface.print_anagram_status(lives, words_found, len(list_of_anagrams), score,
+                                                   word_whose_anagrams_to_find, list_correct_guesses,
+                                                   list_incorrect_guesses)
                     word = str(input()).lower()
 
                     if word == "1":
@@ -52,16 +53,18 @@ while menu != "QUIT":
                             words_found += 1
                             if word in list_of_anagrams:
                                 list_of_anagrams.remove(word)
-                                if word not in right_words_inputted:
-                                    right_words_inputted.append(word)
-                            interface.print_game_status_anagram(lives, words_found, len(list_of_anagrams), score,
-                                                                      word_whose_anagrams_to_find, right_words_inputted, wrong_words_inputted)
+                                if word not in list_correct_guesses:
+                                    list_correct_guesses.append(word)
+                            interface.print_anagram_status(lives, words_found, len(list_of_anagrams), score,
+                                                           word_whose_anagrams_to_find, list_correct_guesses,
+                                                           list_incorrect_guesses)
                         else:
                             lives -= 1
-                            if word not in wrong_words_inputted:
-                                wrong_words_inputted.append(word)
-                            interface.print_game_status_anagram(lives, words_found, len(list_of_anagrams), score,
-                                                                      word_whose_anagrams_to_find, right_words_inputted, wrong_words_inputted)
+                            if word not in list_incorrect_guesses:
+                                list_incorrect_guesses.append(word)
+                            interface.print_anagram_status(lives, words_found, len(list_of_anagrams), score,
+                                                           word_whose_anagrams_to_find, list_correct_guesses,
+                                                           list_incorrect_guesses)
 
                     if lives == 0 and word!="1":
                         interface.print_you_lose(list_of_anagrams, score)
@@ -136,11 +139,11 @@ while menu != "QUIT":
 
             interface.print_word_finder()
 
-            right_words_inputted = []
+            list_correct_guesses = []
             bonus_words_inputted= []
-            wrong_words_inputted = []
+            list_incorrect_guesses = []
             while lives > 0 and len(search_list) > 0:
-                interface.print_game_status_wordfinder(lives, words_found, len(search_list), score, given,right_words_inputted,bonus_words_inputted,wrong_words_inputted)
+                interface.print_wordfinder_status(lives, words_found, len(search_list), score, given, list_correct_guesses, bonus_words_inputted, list_incorrect_guesses)
                 for item in found_list:
                     print(item)
                 word = str(input()).lower()
@@ -155,8 +158,8 @@ while menu != "QUIT":
                         words_found += 1
                         if word in search_list:
 
-                            if word not in right_words_inputted:
-                                right_words_inputted.append(word)
+                            if word not in list_correct_guesses:
+                                list_correct_guesses.append(word)
 
                             found_list[search_list_copy.index(word)] = word
                             search_list.remove(word)
@@ -167,11 +170,11 @@ while menu != "QUIT":
 
                     else:
                         lives -= 1
-                        if word not in wrong_words_inputted:
-                            wrong_words_inputted.append(word)
+                        if word not in list_incorrect_guesses:
+                            list_incorrect_guesses.append(word)
 
-                    interface.print_game_status_wordfinder(lives, words_found, len(search_list), score, given,
-                                                               right_words_inputted, bonus_words_inputted, wrong_words_inputted)
+                    interface.print_wordfinder_status(lives, words_found, len(search_list), score, given,
+                                                      list_correct_guesses, bonus_words_inputted, list_incorrect_guesses)
 
             if lives == 0 and word!="1":
                 interface.clear_screen()
