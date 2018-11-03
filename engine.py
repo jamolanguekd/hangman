@@ -9,12 +9,18 @@ def load_dictionary(filename):
     return dictionary_list
 
 
-def pick_words(list_dictionary, list_position):
-    position_list = list_position
+# PICKING WORDS FOR WORDFINDER
+def picking_words(list_dictionary, list_position):
     word_list = []
-    for position in position_list:
+    for position in list_position:
         word_list.append(list_dictionary[int(position)])
     return word_list
+
+
+# PICKING WORDS FOR ANAGRAM
+def picking_words(list_dictionary):
+    word = random.choice(list_dictionary)
+    return word
 
 
 def generate_lives(mode, difficulty):
@@ -48,18 +54,18 @@ def generate_anagram_dict(difficulty, dictionary):
     return anagram_dictionary
 
 
-def searching_for_anagrams(list_of_words):
+def searching_for_anagrams(list_dictionary, str_word):
     while True:
-        word = random.choice(list_of_words)
         anagram_list = []
-        word_letters = sorted([n for n in word])
-        for i in list_of_words:
+        word_letters = sorted([n for n in str_word])
+        for i in list_dictionary:
             i_letters = sorted([n for n in i])
-            if i_letters == word_letters and i != word:
+            if i_letters == word_letters and i != str_word:
                 anagram_list.append(i)
         if len(anagram_list) > 0:
             break
-    return word, anagram_list
+
+    return anagram_list
 
 
 def char_generator(list_words):

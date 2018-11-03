@@ -111,7 +111,7 @@ while menu != "QUIT":
                 word_total = 5
                 scramble_dictionary = [n for n in dictionary]
 
-            search_list = engine.pick_words(scramble_dictionary, random.sample(range(0, len(scramble_dictionary)-1), word_total))
+            search_list = engine.picking_words(scramble_dictionary, random.sample(range(0, len(scramble_dictionary) - 1), word_total))
             search_list_copy = search_list.copy()
 
             given = engine.char_generator(search_list)

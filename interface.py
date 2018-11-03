@@ -86,7 +86,8 @@ def print_word_finder():
     print()
 
 
-def print_anagram_status(int_lives, int_words_found, int_words_left, int_score, str_given, right_words, wrong_words):
+def print_anagram_status(int_lives, int_words_found, int_words_left, int_score, str_given, list_correct_guesses,
+                         list_incorrect_guesses):
     clear_screen()
     print("--------------------- A N A G R A M   S E A R C H E R ---------------------")
     print()
@@ -96,9 +97,9 @@ def print_anagram_status(int_lives, int_words_found, int_words_left, int_score, 
     print()
     print(" GIVEN WORD: "+str(str_given))
     print()
-    print(" CORRECT GUESSES: " + " ".join(right_words))
+    print(" CORRECT GUESSES: " + " ".join(list_correct_guesses))
     print()
-    print(" INCORRECT GUESSES: " + " ".join(wrong_words))
+    print(" INCORRECT GUESSES: " + " ".join(list_incorrect_guesses))
     print()
     print(" (Please input '1' to exit the game.")
     print("---------------------------------------------------------------------------")
