@@ -101,7 +101,7 @@ def print_anagram_status(int_lives, int_words_found, int_words_left, int_score, 
     print()
     print(" INCORRECT GUESSES: " + " ".join(list_incorrect_guesses))
     print()
-    print(" (Please input '1' to exit the game.")
+    print(" (Please input '1' to exit the game.)")
     print("---------------------------------------------------------------------------")
 
 
@@ -121,7 +121,7 @@ def print_wordfinder_status(int_lives, int_words_found, int_words_left, int_scor
     print()
     print(" INCORRECT GUESSES: " + " ".join(wrong_words))
     print()
-    print(" (Please input '1' to exit the game.")
+    print(" (Please input '1' to exit the game.)")
     print("---------------------------------------------------------------------------")
 
 
@@ -200,10 +200,14 @@ def print_you_win(score):
     print()
     print("---------------------------------------------------------------------------")
     print()
-    print(" Score: " + str(score))
+    print(" SCORE: " + str(score))
+    print()
+    print(" Would you like to keep guessing more anagrams?")
+    print()
+    print(" 1 - Yes   2 - No")
 
 
-def print_you_lose(remaining_word_list, score):
+def print_you_lose(list_remaining_words, score):
     clear_screen()
     print("------------------------------ T O O   B A D ------------------------------")
     print("     __   __  _______  __   __      __       _______  _______  _______ ")
@@ -216,17 +220,26 @@ def print_you_lose(remaining_word_list, score):
     print()
     print("---------------------------------------------------------------------------")
     print()
-    print(" Missed Words: " + " ".join(remaining_word_list))
+    print(" Missed Words: " + " ".join(list_remaining_words))
     print()
-    print(" Score: " + str(score))
+    print(" SCORE: " + str(score))
     print()
-    input(" Press Enter to continue.")
+    print(" Would you like to try again?")
+    print()
+    print(" 1 - Yes   2 - No")
 
 
-def continue_game():
-    print()
-    print(" Would you like to keep guessing more anagrams?")
-    print()
-    print(" 1. Yes   2. No")
-    continue_value = int(input())
-    return continue_value
+def continue_game(bool_win, list_remaining_words, score):
+    while True:
+        clear_screen()
+        if bool_win:
+            print_you_win(score)
+        else:
+            print_you_lose(list_remaining_words, score)
+
+        state = input()
+        if state == "1":
+            return True
+        elif state == "2":
+            return False
+

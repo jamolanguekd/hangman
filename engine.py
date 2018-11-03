@@ -9,16 +9,14 @@ def load_dictionary(filename):
     return dictionary_list
 
 
-# PICKING WORDS FOR WORDFINDER
-def picking_words(list_dictionary, list_position):
+def picking_words_wordfinder(list_dictionary, list_position):
     word_list = []
     for position in list_position:
         word_list.append(list_dictionary[int(position)])
     return word_list
 
 
-# PICKING WORDS FOR ANAGRAM
-def picking_words(list_dictionary):
+def picking_words_anagram(list_dictionary):
     word = random.choice(list_dictionary)
     return word
 
@@ -35,36 +33,32 @@ def generate_lives(mode, difficulty):
     return lives
 
 
-def generate_anagram_dict(difficulty, dictionary):
-    if difficulty == "EASY":
+def generate_anagram_dict(str_difficulty, list_dict):
+    if str_difficulty == "EASY":
         anagram_dictionary = []
-        for word in dictionary:
+        for word in list_dict:
             if len(word) <= 4:
                 anagram_dictionary.append(word)
-    elif difficulty == "NORMAL":
+    elif str_difficulty == "NORMAL":
         anagram_dictionary = []
-        for word in dictionary:
+        for word in list_dict:
             if 4 < len(word) <= 7:
                 anagram_dictionary.append(word)
-    elif difficulty == "DIFFICULT":
+    elif str_difficulty == "DIFFICULT":
         anagram_dictionary = []
-        for word in dictionary:
+        for word in list_dict:
             if len(word) > 7:
                 anagram_dictionary.append(word)
     return anagram_dictionary
 
 
 def searching_for_anagrams(list_dictionary, str_word):
-    while True:
-        anagram_list = []
-        word_letters = sorted([n for n in str_word])
-        for i in list_dictionary:
-            i_letters = sorted([n for n in i])
-            if i_letters == word_letters and i != str_word:
-                anagram_list.append(i)
-        if len(anagram_list) > 0:
-            break
-
+    anagram_list = []
+    word_letters = sorted([n for n in str_word])
+    for i in list_dictionary:
+        i_letters = sorted([n for n in i])
+        if i_letters == word_letters and i != str_word:
+            anagram_list.append(i)
     return anagram_list
 
 
@@ -79,7 +73,7 @@ def char_generator(list_words):
     return char_seq
 
 
-def word_checker(str_char_seq, str_word, list_dictionary):
+def word_checker_wordfinder(str_char_seq, str_word, list_dictionary):
     char_seq_list = list(str_char_seq)
     if str_word not in list_dictionary:
         return False
@@ -90,6 +84,23 @@ def word_checker(str_char_seq, str_word, list_dictionary):
             else:
                 return False
         return True
+
+
+def word_checker_anagram(str_input_word, list_anagrams):
+    if str_input_word in list_anagrams:
+        return True
+    return False
+
+
+# CHECKS IF ATTEMPT IS VALID
+
+def attempt_checker(str_input_word, list_guesses):
+    if str_input_word in list_guesses:
+        return False
+    else:
+        list_guesses.append(str_input_word)
+    return True
+
 
 
 def compute_score(str_word):
