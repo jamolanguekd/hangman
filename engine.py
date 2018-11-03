@@ -30,9 +30,9 @@ def anagram_searcher(str_word_input, list_dictionary):
 '''
 
 
-#new anagram searcher function
-
-def searching_for_anagrams(list_of_words):
+#original new anagram searcher function
+'''
+def searching_for_anagrams_(list_of_words):
     word = random.choice(list_of_words)
     anagram_list = []
     word_letters = sorted([n for n in word])
@@ -41,6 +41,65 @@ def searching_for_anagrams(list_of_words):
         if i_letters == word_letters and i != word:
             anagram_list.append(i)
     return word, anagram_list
+'''
+
+#ANAGRAM MODE DIFFICULTIES
+
+def searching_for_anagrams_easy(list_of_words):
+    lives = 10
+    easy_dictionary = []
+    for word in list_of_words:
+        if len(word) < 4:
+            easy_dictionary.append(word)
+    while True:
+        word = random.choice(easy_dictionary)
+        anagram_list = []
+        word_letters = sorted([n for n in word])
+        for i in easy_dictionary:
+            i_letters = sorted([n for n in i])
+            if i_letters == word_letters and i != word:
+                anagram_list.append(i)
+        if len(anagram_list) > 0:
+            break
+    return lives, word, anagram_list
+
+
+def searching_for_anagrams_normal(list_of_words):
+    lives = 5
+    normal_dictionary = []
+    for word in list_of_words:
+        if 4 <= len(word) <= 6:
+            normal_dictionary.append(word)
+    while True:
+        word = random.choice(normal_dictionary)
+        anagram_list = []
+        word_letters = sorted([n for n in word])
+        for i in normal_dictionary:
+            i_letters = sorted([n for n in i])
+            if i_letters == word_letters and i != word:
+                anagram_list.append(i)
+        if len(anagram_list) > 0:
+            break
+    return lives, word, anagram_list
+
+
+def searching_for_anagrams_difficult(list_of_words):
+    lives = 3
+    difficult_dictionary = []
+    for word in list_of_words:
+        if len(word) >= 7:
+            difficult_dictionary.append(word)
+    while True:
+        word = random.choice(difficult_dictionary)
+        anagram_list = []
+        word_letters = sorted([n for n in word])
+        for i in difficult_dictionary:
+            i_letters = sorted([n for n in i])
+            if i_letters == word_letters and i != word:
+                anagram_list.append(i)
+        if len(anagram_list) > 0:
+            break
+    return lives, word, anagram_list
 
 
 def char_generator(list_words):

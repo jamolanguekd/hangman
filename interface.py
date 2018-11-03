@@ -98,6 +98,7 @@ def print_game_status_anagram(int_lives, int_words_found, int_words_left, int_sc
     print("-------------------------------------------------------------------------")
     print(" INCORRECT GUESSES: " + " ".join(wrong_words))
     print("-------------------------------------------------------------------------")
+    print("Input '0' to return to the main menu.")
 
 
 def print_game_status_wordfinder(int_lives, int_words_found, int_words_left, int_score, str_given, right_words, bonus_words, wrong_words):
@@ -116,6 +117,7 @@ def print_game_status_wordfinder(int_lives, int_words_found, int_words_left, int
     print("-------------------------------------------------------------------------")
     print(" INCORRECT GUESSES: " + " ".join(wrong_words))
     print("-------------------------------------------------------------------------")
+    print(" Input '0' to return to the main menu.")
 
 def main_menu():
     while True:
@@ -206,3 +208,11 @@ def print_you_lose(remaining_word_list, score):
     print()
     print("Score: " + str(score))
 
+
+def continue_game():
+    clear_screen()
+    print("Congratulations! You have guessed all the anagrams of that word.")
+    print("Would you like to keep guessing more anagrams?")
+    print("Yes/No?")
+    continue_value = input()
+    return continue_value
