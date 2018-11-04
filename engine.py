@@ -148,7 +148,7 @@ def char_generator(list_words):
     char_seq = []
     for word in word_list:
         for letter in word:
-                if word.count(letter) != char_seq.count(letter):
+                if word.count(letter) > char_seq.count(letter):
                     char_seq.append(letter)
     char_seq = ''.join(sorted(char_seq))
     return char_seq
