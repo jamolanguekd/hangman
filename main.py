@@ -150,7 +150,7 @@ while menu != "QUIT":
                     else:
 
                         # CORRECT ATTEMPT
-                        if engine.word_checker_wordfinder(given_word, input_word, list_words_left):
+                        if engine.word_checker_wordfinder(given_word, input_word, list_words):
 
                             # VALID ATTEMPT
                             if engine.attempt_checker(input_word, list_correct_guesses):
