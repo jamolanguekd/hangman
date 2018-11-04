@@ -61,10 +61,9 @@ while menu != "QUIT":
 
                         # CORRECT ATTEMPT
                         if engine.word_checker_anagram(input_word, list_anagrams):
-                            if input_word in list_anagrams_left:
-                                list_anagrams_left.remove(input_word)
                             # VALID ATTEMPT
                             if engine.attempt_checker(input_word, list_correct_guesses):
+                                list_anagrams_left.remove(input_word)
                                 score += engine.compute_score(input_word)
                                 words_found += 1
 
@@ -152,10 +151,10 @@ while menu != "QUIT":
 
                         # CORRECT ATTEMPT
                         if engine.word_checker_wordfinder(given_word, input_word, list_words_left):
-                            list_words_left.remove(input_word)
 
                             # VALID ATTEMPT
                             if engine.attempt_checker(input_word, list_correct_guesses):
+                                list_words_left.remove(input_word)
                                 score += engine.compute_score(input_word)
                                 words_found += 1
 
