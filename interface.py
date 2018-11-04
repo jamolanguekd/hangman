@@ -126,26 +126,6 @@ def print_difficulty():
     print()
 
 
-def print_anagram_searcher():
-    clear_screen()
-    print("--------------------- A N A G R A M   S E A R C H E R ---------------------")
-    print()
-    print(" In this game mode, you have to find all the anagrams of the given word. ")
-    print()
-    print("---------------------------------------------------------------------------")
-    print()
-
-
-def print_word_finder():
-    clear_screen()
-    print("-------------------------- W O R D   F I N D E R --------------------------")
-    print()
-    print("In this game mode, find all possible words from the sequence of characters.")
-    print()
-    print("---------------------------------------------------------------------------")
-    print()
-
-
 def print_anagram_status(int_lives, int_words_found, int_words_left, int_score, str_given, list_correct_guesses,
                          list_incorrect_guesses):
     clear_screen()
@@ -161,9 +141,10 @@ def print_anagram_status(int_lives, int_words_found, int_words_left, int_score, 
     print()
     print(" INCORRECT GUESSES: " + " ".join(list_incorrect_guesses))
     print()
-    print(" (Please input '1' to exit the game.)")
-    print()
     print("---------------------------------------------------------------------------")
+    print("                               1 - QUIT GAME")
+    print("---------------------------------------------------------------------------")
+    print()
 
 
 def print_wordfinder_status(int_lives, int_words_found, int_words_left, int_score, str_given, list_correct_guesses, list_bonus_guesses,
@@ -175,18 +156,21 @@ def print_wordfinder_status(int_lives, int_words_found, int_words_left, int_scor
     print()
     print("---------------------------------------------------------------------------")
     print()
-    print(" GIVEN LETTERS: "+str(str_given))
+    print(" GIVEN LETTERS: "+str(" ".join(str_given)))
     print()
     print(" BONUS WORDS: " + " ".join(list_bonus_guesses))
     print()
     print(" INCORRECT GUESSES: " + " ".join(list_incorrect_guesses))
     print()
-    print(" (Please input '1' to exit the game.)")
-    print()
     print("---------------------------------------------------------------------------")
+    print("                    1 - QUIT GAME   2 - SHUFFLE LETTERS")
+    print("---------------------------------------------------------------------------")
+    print()
     print(" WORDS TO FIND:")
+    print()
     for i in list_correct_guesses:
         print(" "+str(i))
+    print()
 
 
 def main_menu():
@@ -277,6 +261,7 @@ def print_you_win(score):
     print(" Would you like to keep guessing more words?")
     print()
     print(" 1 - Yes   2 - No")
+    print()
 
 
 def print_you_lose(list_remaining_words, score):
@@ -299,6 +284,7 @@ def print_you_lose(list_remaining_words, score):
     print(" Would you like to try again?")
     print()
     print(" 1 - Yes   2 - No")
+    print()
 
 
 def continue_game(bool_win, list_remaining_words, score):

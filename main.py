@@ -21,8 +21,6 @@ while menu != "QUIT":
         # SELECT ANAGRAM SEARCHER
         while mode == "ANAGRAM SEARCHER":
 
-            interface.print_anagram_searcher()
-
             score = 0
             words_found = 0
 
@@ -100,8 +98,6 @@ while menu != "QUIT":
 
         while mode == "WORD FINDER":
 
-            interface.print_word_finder()
-
             score = 0
             words_found = 0
 
@@ -126,8 +122,6 @@ while menu != "QUIT":
                 # WORDS TO FIND WITH BLANKS
                 list_blank = engine.generate_blanks(list_words_left)
 
-                interface.print_word_finder()
-
                 list_correct_guesses = []
                 list_bonus_guesses = []
                 list_incorrect_guesses = []
@@ -144,6 +138,12 @@ while menu != "QUIT":
                         continue_state = False
                         mode = ""
                         break
+
+                    # USER DECIDES TO SHUFFLE THE STRING OF LETTERS
+                    elif input_word == "2":
+                        given_word = engine.wordfinder_shuffle(given_word)
+                        interface.print_wordfinder_status(lives, words_found, len(list_words_left), score, given_word,
+                                                          list_blank, list_bonus_guesses, list_incorrect_guesses)
 
                     # USER ATTEMPTS A GUESS
                     else:

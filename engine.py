@@ -150,7 +150,7 @@ def char_generator(list_words):
         for letter in word:
                 if word.count(letter) != char_seq.count(letter):
                     char_seq.append(letter)
-    char_seq = ' '.join(sorted(char_seq))
+    char_seq = ''.join(sorted(char_seq))
     return char_seq
 
 
@@ -165,6 +165,15 @@ def word_checker_wordfinder(str_char_seq, str_word, list_dictionary):
             else:
                 return False
         return True
+
+
+# SHUFFLES THE GIVEN STRING IN WORD FINDER MODE
+
+def wordfinder_shuffle(str_char_seq):
+    char_list = list(str_char_seq)
+    random.shuffle(char_list)
+    new_str_char_seq = "".join(char_list)
+    return new_str_char_seq
 
 
 def word_checker_anagram(str_input_word, list_anagrams):
