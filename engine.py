@@ -135,11 +135,11 @@ def generate_anagram_dict(str_difficulty, list_dict):
 
 def searching_for_anagrams(list_dictionary, str_word):
     anagram_list = []
-    word_letters = sorted([n for n in str_word])
-    for i in list_dictionary:
-        i_letters = sorted([n for n in i])
-        if i_letters == word_letters and i != str_word:
-            anagram_list.append(i)
+    str_word_letters = sorted([n for n in str_word])
+    for dict_word in list_dictionary:
+        dict_word_letters = sorted([n for n in dict_word])
+        if dict_word_letters == str_word_letters and dict_word != str_word:
+            anagram_list.append(dict_word)
     return anagram_list
 
 
