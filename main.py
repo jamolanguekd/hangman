@@ -1,6 +1,5 @@
 import interface
 import engine
-import random
 
 dictionary = engine.load_dictionary("dictionary.txt")
 menu = ""
@@ -150,26 +149,32 @@ while menu != "QUIT":
                     else:
 
                         # CORRECT ATTEMPT
+                        # The input is in the set of words that need to be found.
                         if engine.word_checker_wordfinder(given_word, input_word, list_words):
 
                             # VALID ATTEMPT
+                            # The input hasn't been attempted yet.
                             if engine.attempt_checker(input_word, list_correct_guesses):
                                 list_words_left.remove(input_word)
                                 score += engine.compute_score(input_word)
                                 words_found += 1
 
                         # BONUS ATTEMPT
+                        # The input is not in the set of words to be found but is in the dictionary.
                         elif engine.word_checker_wordfinder(given_word, input_word, dictionary):
 
                             # VALID ATTEMPT
+                            # The input hasn't been attempted yet.
                             if engine.attempt_checker(input_word, list_bonus_guesses):
                                 score += engine.compute_score(input_word)
 
                         # INCORRECT ATTEMPT
+                        # The input is in not in the dictionary or the set of words to be found.
                         else:
                             if engine.attempt_checker(input_word, list_incorrect_guesses):
                                 lives -= 1
 
+                        # REFRESH SCREEN
                         list_blank = engine.update_blanks(list_blank, list_correct_guesses, list_words)
                         interface.print_wordfinder_status(lives, words_found, len(list_words_left), score, given_word,
                                                           list_blank, list_bonus_guesses, list_incorrect_guesses)
