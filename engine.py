@@ -21,13 +21,6 @@ def picking_words_anagram(list_dictionary):
     return word
 
 
-def update_blanks(list_blank, list_correct_guesses, list_words):
-    for guess in list_correct_guesses:
-        list_blank[list_words.index(guess)] = guess
-
-    return list_blank
-
-
 def generate_blanks(list_words):
     list_blank = []
     for word in list_words:
@@ -50,7 +43,14 @@ def generate_blanks(list_words):
                 if ch[pos] == "_":
                     break
             ch[pos] = word[pos]
-        list_blank.append("".join(ch))
+        list_blank.append(" ".join(ch))
+
+    return list_blank
+
+
+def update_blanks(list_blank, list_correct_guesses, list_words):
+    for guess in list_correct_guesses:
+        list_blank[list_words.index(guess)] = guess
 
     return list_blank
 
@@ -85,6 +85,7 @@ def generate_lives(str_mode, str_difficulty):
 
 
 def generate_word_total(str_difficulty):
+    word_total = 0
     if str_difficulty == "EASY":
         word_total = 5
     elif str_difficulty == "NORMAL":
@@ -95,14 +96,13 @@ def generate_word_total(str_difficulty):
 
 
 def generate_wordfinder_dict(str_difficulty, list_dict):
+    wordfinder_dictionary = []
     if str_difficulty == "EASY":
-        wordfinder_dictionary = []
         for word in list_dict:
             if len(word) <= 4:
                 wordfinder_dictionary.append(word)
 
     elif str_difficulty == "NORMAL":
-        wordfinder_dictionary = []
         for word in list_dict:
             if len(word) <= 6:
                 wordfinder_dictionary.append(word)
@@ -115,20 +115,18 @@ def generate_wordfinder_dict(str_difficulty, list_dict):
 
 
 def generate_anagram_dict(str_difficulty, list_dict):
+    anagram_dictionary = []
     if str_difficulty == "EASY":
-        anagram_dictionary = []
         for word in list_dict:
             if len(word) == 3:
                 anagram_dictionary.append(word)
 
     elif str_difficulty == "NORMAL":
-        anagram_dictionary = []
         for word in list_dict:
             if len(word) == 4:
                 anagram_dictionary.append(word)
 
     elif str_difficulty == "DIFFICULT":
-        anagram_dictionary = []
         for word in list_dict:
             if len(word) == 5:
                 anagram_dictionary.append(word)
@@ -146,13 +144,13 @@ def searching_for_anagrams(list_dictionary, str_word):
 
 
 def char_generator(list_words):
-    word_list = list_words
+    word_list = [n for n in list_words]
     char_seq = []
     for word in word_list:
         for letter in word:
                 if word.count(letter) != char_seq.count(letter):
                     char_seq.append(letter)
-    char_seq = ''.join(sorted(char_seq))
+    char_seq = ' '.join(sorted(char_seq))
     return char_seq
 
 

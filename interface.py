@@ -171,7 +171,7 @@ def print_wordfinder_status(int_lives, int_words_found, int_words_left, int_scor
     print()
     print("---------------------------------------------------------------------------")
     print()
-    print(" GIVEN WORD: "+str(str_given))
+    print(" GIVEN LETTERS: "+str(str_given))
     print()
     print(" BONUS WORDS: " + " ".join(list_bonus_guesses))
     print()
